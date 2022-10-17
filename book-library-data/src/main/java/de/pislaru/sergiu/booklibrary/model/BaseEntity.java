@@ -17,11 +17,7 @@ public abstract class BaseEntity implements Serializable {
 
     private String createdBy;
     private String updatedBy;
-
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime updatedAt;
 
     @PrePersist
