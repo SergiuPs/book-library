@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>de.pislaru.sergiu</groupId>
-            <artifactId>book-library-data</artifactId>
+            <artifactId>book-library-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -63,14 +63,7 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                </includes>
-            </resource>
-        </resources>
+
     </build>
 
 </project>
