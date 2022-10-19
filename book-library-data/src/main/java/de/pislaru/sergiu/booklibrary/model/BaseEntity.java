@@ -9,11 +9,12 @@ import java.util.Objects;
 public abstract class BaseEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Version
-    private Long version;
+    @Column(name = "opt_lock", columnDefinition = "integer DEFAULT 0", nullable = false)
+    private Long version = 0L;
 
     private String createdBy;
     private String updatedBy;
