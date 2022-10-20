@@ -5,11 +5,10 @@ import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class City extends BaseEntity implements Serializable {
+public class City extends BaseEntity {
 
     private String name;
 

@@ -1,23 +1,31 @@
 package de.pislaru.sergiu.booklibrary.model.address;
 
 import de.pislaru.sergiu.booklibrary.model.BaseEntity;
+import de.pislaru.sergiu.booklibrary.model.User;
 
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.util.Objects;
 
-public class Address extends BaseEntity implements Serializable {
+@Entity
+public class Address extends BaseEntity {
 
+    @ManyToOne
     private City city;
     private String zip;
     private String street;
 
+    @ManyToOne
+    private User user;
+
     public Address() {
     }
 
-    public Address(City city, String zip, String street) {
+    public Address(City city, String zip, String street, User user) {
         this.city = city;
         this.zip = zip;
         this.street = street;
+        this.user = user;
     }
 
     public City getCity() {
@@ -42,6 +50,14 @@ public class Address extends BaseEntity implements Serializable {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
