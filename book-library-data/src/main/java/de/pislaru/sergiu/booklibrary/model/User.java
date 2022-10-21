@@ -2,9 +2,7 @@ package de.pislaru.sergiu.booklibrary.model;
 
 import de.pislaru.sergiu.booklibrary.model.address.Address;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.*;
 
 @Entity
@@ -19,16 +17,26 @@ public class User extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Address> addresses = new HashSet<>();
 
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "user_role",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
     public User() {
     }
 
-    public User(String firstName, String lastName, String userName, String email, String password, Set<Address> addresses) {
+    public User(String firstName, String lastName, String userName, String email, String password, Set<Address> addresses, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.addresses = addresses;
+        this.roles = roles;
     }
 
     public String getFirstName() {
@@ -79,6 +87,14 @@ public class User extends BaseEntity {
         this.addresses = addresses;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -94,11 +110,12 @@ public class User extends BaseEntity {
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(userName, user.userName) &&
                 Objects.equals(email, user.email) &&
-                addresses.equals(user.addresses);
+                addresses.equals(user.addresses) &&
+                roles.equals(user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), firstName, lastName, userName, email, password, addresses);
+        return Objects.hash(super.hashCode(), firstName, lastName, userName, email, password, addresses, roles);
     }
 }
