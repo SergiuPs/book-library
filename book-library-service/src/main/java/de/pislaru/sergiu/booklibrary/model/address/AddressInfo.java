@@ -12,44 +12,21 @@ public class AddressInfo {
     public AddressInfo() {
     }
 
-    public AddressInfo(Long id, CityInfo cityInfo, String zip, String street) {
-        this.id = id;
-        this.cityInfo = cityInfo;
-        this.zip = zip;
-        this.street = street;
-    }
+    public Long getId() {return id;}
 
-    public Long getId() {
-        return id;
-    }
+    public void setId(Long id) {this.id = id;}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public CityInfo getCityInfo() {return cityInfo;}
 
-    public CityInfo getCityInfo() {
-        return cityInfo;
-    }
+    public void setCityInfo(CityInfo cityInfo) {this.cityInfo = cityInfo;}
 
-    public void setCityInfo(CityInfo cityInfo) {
-        this.cityInfo = cityInfo;
-    }
+    public String getZip() {return zip;}
 
-    public String getZip() {
-        return zip;
-    }
+    public void setZip(String zip) {this.zip = zip;}
 
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
+    public String getStreet() {return street;}
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
+    public void setStreet(String street) {this.street = street;}
 
     @Override
     public boolean equals(Object object) {
@@ -70,7 +47,7 @@ public class AddressInfo {
 
     @Override
     public int hashCode() {
-        return Objects.hash(cityInfo.hashCode(), zip, street);
+        return Objects.hash(cityInfo, zip, street);
     }
 
     @Override

@@ -22,80 +22,37 @@ public class UserInfo {
     public UserInfo() {
     }
 
-    public UserInfo(Long id, String firstName, String lastName, String email, String userName, String password, Set<RoleInfo> roles, Set<AddressInfo> addresses) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.userName = userName;
-        this.password = password;
-        this.roles = roles;
-        this.addresses = addresses;
-    }
+    public Long getId() {return id;}
 
-    public Long getId() {
-        return id;
-    }
+    public void setId(Long id) {this.id = id;}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getFirstName() {return firstName;}
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public void setFirstName(String firstName) {this.firstName = firstName;}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public String getLastName() {return lastName;}
 
-    public String getLastName() {
-        return lastName;
-    }
+    public void setLastName(String lastName) {this.lastName = lastName;}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public String getEmail() {return email;}
 
-    public String getEmail() {
-        return email;
-    }
+    public void setEmail(String email) {this.email = email;}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getUserName() {return userName;}
 
-    public String getUserName() {
-        return userName;
-    }
+    public void setUserName(String userName) {this.userName = userName;}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    public String getPassword() {return password;}
 
-    public String getPassword() {
-        return password;
-    }
+    public void setPassword(String password) {this.password = password;}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public Set<RoleInfo> getRoles() {return roles;}
 
-    public Set<RoleInfo> getRoles() {
-        return roles;
-    }
+    public void setRoles(Set<RoleInfo> roles) {this.roles = roles;}
 
-    public void setRoles(Set<RoleInfo> roles) {
-        this.roles = roles;
-    }
+    public Set<AddressInfo> getAddresses() {return addresses;}
 
-    public Set<AddressInfo> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(Set<AddressInfo> addresses) {
-        this.addresses = addresses;
-    }
+    public void setAddresses(Set<AddressInfo> addresses) {this.addresses = addresses;}
 
     public boolean equals(Object object) {
         if (this == object) {

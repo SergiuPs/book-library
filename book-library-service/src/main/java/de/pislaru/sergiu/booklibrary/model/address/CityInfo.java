@@ -11,15 +11,7 @@ public class CityInfo {
     public CityInfo() {
     }
 
-    public CityInfo(Long id, String name, Region region) {
-        this.id = id;
-        this.name = name;
-        this.region = region;
-    }
-
-    public Long getId() {
-        return id;
-    }
+    public Long getId() {return id;}
 
     public void setId(Long id) {
         this.id = id;
