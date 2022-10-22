@@ -4,6 +4,7 @@ import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 import de.pislaru.sergiu.booklibrary.model.User;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import java.util.Objects;
 
@@ -15,7 +16,7 @@ public class Address extends BaseEntity {
     private String zip;
     private String street;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     public Address() {
