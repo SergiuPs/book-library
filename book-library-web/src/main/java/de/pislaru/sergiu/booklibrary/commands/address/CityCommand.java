@@ -31,21 +31,13 @@ public class CityCommand {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() {return name;}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) {this.name = name;}
 
-    public Region getRegion() {
-        return region;
-    }
+    public Region getRegion() {return region;}
 
-    public void setRegion(Region region) {
-        this.region = region;
-    }
+    public void setRegion(Region region) {this.region = region;}
 
     @Override
     public boolean equals(Object object) {

@@ -7,8 +7,7 @@ public class AddressCommand {
 
     private Long id;
 
-    @NotBlank
-    private CityCommand cityCommand;
+    private CityCommand city;
 
     @NotBlank
     private String zip;
@@ -19,37 +18,28 @@ public class AddressCommand {
     public AddressCommand() {
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() {return id;}
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public CityCommand getCityCommand() {
-        return cityCommand;
-    }
 
-    public void setCityCommand(CityCommand cityCommand) {
-        this.cityCommand = cityCommand;
-    }
-
-    public String getZip() {
-        return zip;
-    }
+    public String getZip() {return zip;}
 
     public void setZip(String zip) {
         this.zip = zip;
     }
 
-    public String getStreet() {
-        return street;
-    }
+    public String getStreet() {return street;}
 
     public void setStreet(String street) {
         this.street = street;
     }
+
+    public CityCommand getCity() {return city;}
+
+    public void setCity(CityCommand city) {this.city = city;}
 
     @Override
     public boolean equals(Object object) {
@@ -63,24 +53,24 @@ public class AddressCommand {
         AddressCommand address = (AddressCommand) object;
 
         return Objects.equals(id, address.id) &&
-                Objects.equals(cityCommand, address.cityCommand) &&
+                Objects.equals(city, address.city) &&
                 Objects.equals(zip, address.zip) &&
                 Objects.equals(street, address.street);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cityCommand.hashCode(), zip, street);
+        return Objects.hash(city.hashCode(), zip, street);
     }
 
     @Override
     public String toString() {
         return "AddressCommand {"
                 + "id=" + id
-                + ", city=" + cityCommand.getName()
-                + ", region=" + cityCommand.getRegion()
+                + ", city=" + city.getName()
+                + ", region=" + city.getRegion()
                 + ", zip=" + zip
-                + ", street" + street
+                + ", street=" + street
                 + "}";
     }
 }

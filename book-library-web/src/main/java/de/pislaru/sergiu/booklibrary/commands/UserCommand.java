@@ -34,17 +34,7 @@ public class UserCommand {
     private Set<AddressCommand> addresses = new HashSet<>();
 
     public UserCommand() {
-        AddressCommand a1 = new AddressCommand();
-        a1.setZip("HOPA");
-        CityCommand city = new CityCommand("", Region.BB);
-        a1.setCityCommand(city);
-        AddressCommand a2 = new AddressCommand();
-        a2.setZip("BABAH");
-        a2.setCityCommand(city);
-        this.addresses.add(a1);
-        this.addresses.add(a2);
     }
-
 
     public Long getId() {
         return id;
@@ -54,9 +44,7 @@ public class UserCommand {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getFirstName() {return firstName;}
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -94,9 +82,7 @@ public class UserCommand {
         this.password = password;
     }
 
-    public Set<RoleCommand> getRoles() {
-        return roles;
-    }
+    public Set<RoleCommand> getRoles() {return roles;}
 
     public void setRoles(Set<RoleCommand> roles) {
         this.roles = roles;
