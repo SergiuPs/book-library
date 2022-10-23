@@ -1,5 +1,7 @@
 package de.pislaru.sergiu.booklibrary.model.address;
 
+import de.pislaru.sergiu.booklibrary.model.UserInfo;
+
 import java.util.Objects;
 
 public class AddressInfo {
@@ -8,6 +10,7 @@ public class AddressInfo {
     private CityInfo cityInfo;
     private String zip;
     private String street;
+    private UserInfo userInfo;
 
     public AddressInfo() {
     }
@@ -28,6 +31,10 @@ public class AddressInfo {
 
     public void setStreet(String street) {this.street = street;}
 
+    public UserInfo getUserInfo() {return userInfo;}
+
+    public void setUserInfo(UserInfo userInfo) {this.userInfo = userInfo;}
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -41,6 +48,7 @@ public class AddressInfo {
 
         return Objects.equals(id, address.id) &&
                 Objects.equals(cityInfo, address.cityInfo) &&
+                Objects.equals(userInfo, address.userInfo) &&
                 Objects.equals(zip, address.zip) &&
                 Objects.equals(street, address.street);
     }

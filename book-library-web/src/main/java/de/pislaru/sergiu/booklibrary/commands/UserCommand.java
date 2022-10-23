@@ -34,7 +34,22 @@ public class UserCommand {
     private Set<AddressCommand> addresses = new HashSet<>();
 
     public UserCommand() {
+        AddressCommand a1 = new AddressCommand();
+        a1.setZip("HOPA");
+        a1.setStreet("dffsfsd");
+        CityCommand city = new CityCommand("etebbbrt", Region.BB);
+        CityCommand city2 = new CityCommand("etfbbbsfert", Region.HH);
+        a1.setCity(city);
+       // a1.setUserCommand(this);
+        AddressCommand a2 = new AddressCommand();
+        a2.setZip("BABAH");
+        a2.setStreet("xddfsfsf");
+        a2.setCity(city2);
+        //a2.setUserCommand(this);
+        this.addresses.add(a1);
+
     }
+
 
     public Long getId() {
         return id;
@@ -88,9 +103,7 @@ public class UserCommand {
         this.roles = roles;
     }
 
-    public Set<AddressCommand> getAddresses() {
-        return addresses;
-    }
+    public Set<AddressCommand> getAddresses() {return addresses;}
 
     public void setAddresses(Set<AddressCommand> addresses) {
         this.addresses = addresses;

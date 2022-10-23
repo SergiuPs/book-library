@@ -1,5 +1,7 @@
 package de.pislaru.sergiu.booklibrary.commands.address;
 
+import de.pislaru.sergiu.booklibrary.commands.UserCommand;
+
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
@@ -8,6 +10,8 @@ public class AddressCommand {
     private Long id;
 
     private CityCommand city;
+
+    private UserCommand userCommand;
 
     @NotBlank
     private String zip;
@@ -23,7 +27,6 @@ public class AddressCommand {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getZip() {return zip;}
 
@@ -41,6 +44,10 @@ public class AddressCommand {
 
     public void setCity(CityCommand city) {this.city = city;}
 
+    public UserCommand getUserCommand() {return userCommand;}
+
+    public void setUserCommand(UserCommand userCommand) {this.userCommand = userCommand;}
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -54,6 +61,7 @@ public class AddressCommand {
 
         return Objects.equals(id, address.id) &&
                 Objects.equals(city, address.city) &&
+                Objects.equals(userCommand, address.userCommand) &&
                 Objects.equals(zip, address.zip) &&
                 Objects.equals(street, address.street);
     }
