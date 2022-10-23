@@ -2,10 +2,10 @@ package de.pislaru.sergiu.booklibrary.model.address;
 
 import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class City extends BaseEntity {
@@ -14,6 +14,10 @@ public class City extends BaseEntity {
 
     @Enumerated(value = EnumType.STRING)
     private Region region;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "city", targetEntity = Address.class)
+    private Set<Address> addresses = new HashSet<>();
 
     public City() {
     }
@@ -27,12 +31,22 @@ public class City extends BaseEntity {
         return name;
     }
 
+    public void setName(String name) {this.name = name;}
+
     public Region getRegion() {
         return region;
     }
 
     public void setRegion(Region region) {
         this.region = region;
+    }
+
+    public Set<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
     }
 
     @Override

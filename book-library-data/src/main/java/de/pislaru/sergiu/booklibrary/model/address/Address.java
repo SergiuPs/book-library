@@ -3,20 +3,20 @@ package de.pislaru.sergiu.booklibrary.model.address;
 import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 import de.pislaru.sergiu.booklibrary.model.User;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Address extends BaseEntity {
 
-    @ManyToOne
+    @JoinColumn(name = "city_id")
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = City.class)
     private City city;
     private String zip;
     private String street;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
     private User user;
 
     public Address() {

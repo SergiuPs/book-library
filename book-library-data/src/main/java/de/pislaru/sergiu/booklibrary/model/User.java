@@ -14,7 +14,7 @@ public class User extends BaseEntity {
     private String email;
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", targetEntity = Address.class)
     private Set<Address> addresses = new HashSet<>();
 
     @ManyToMany(cascade = {
@@ -85,6 +85,14 @@ public class User extends BaseEntity {
 
     public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
+        for (Address address : this.addresses) {
+            address.setUser(this);
+        }
+    }
+
+    public void addAddress(Address address) {
+        addresses.add(address);
+        address.setUser(this);
     }
 
     public Set<Role> getRoles() {
