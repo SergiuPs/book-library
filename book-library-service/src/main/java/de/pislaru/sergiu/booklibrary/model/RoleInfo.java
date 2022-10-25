@@ -2,24 +2,14 @@ package de.pislaru.sergiu.booklibrary.model;
 
 import java.util.Objects;
 
-public class RoleInfo {
+public class RoleInfo extends BaseEntityInfo {
 
-    private Long id;
     private String name;
 
     public RoleInfo() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {return name;}
-
     public void setName(String name) {this.name = name;}
 
     @Override
@@ -33,20 +23,19 @@ public class RoleInfo {
 
         RoleInfo role = (RoleInfo) object;
 
-        return Objects.equals(id, role.id) &&
-                Objects.equals(name, role.name);
+        return Objects.equals(name, role.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(super.hashCode(),name);
     }
 
     @Override
     public String toString() {
         return "RoleInfo {"
-                + "id=" + id
                 + ", name=" + name
-                + "}";
+                + "}"
+                + super.toString();
     }
 }

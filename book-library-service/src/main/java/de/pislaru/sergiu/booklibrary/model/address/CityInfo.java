@@ -1,37 +1,24 @@
 package de.pislaru.sergiu.booklibrary.model.address;
 
+import de.pislaru.sergiu.booklibrary.model.BaseEntityInfo;
+
 import java.util.Objects;
 
-public class CityInfo {
+public class CityInfo extends BaseEntityInfo {
 
-    private Long id;
     private String name;
     private Region region;
 
     public CityInfo() {
     }
 
-    public Long getId() {return id;}
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Region getRegion() {
-        return region;
-    }
-
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+    public Region getRegion() {return region;}
     public void setRegion(Region region) {
         this.region = region;
     }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -43,8 +30,7 @@ public class CityInfo {
 
         CityInfo city = (CityInfo) object;
 
-        return Objects.equals(id, city.id) &&
-                Objects.equals(name, city.name) &&
+        return  Objects.equals(name, city.name) &&
                 Objects.equals(region, city.region);
     }
 
@@ -56,10 +42,10 @@ public class CityInfo {
     @Override
     public String toString() {
         return "CityInfo {"
-                + "id=" + id
-                + ", name=" + name
+                + "name=" + name
                 + ", region=" + region.getName()
-                + "}";
+                + "}"
+                + super.toString();
     }
 
 }
