@@ -9,6 +9,9 @@ import java.util.Set;
 @Entity
 public class Role extends BaseEntity {
 
+    public static final String ROLE_USER = "ROLE_USER";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
+
     private String name;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
