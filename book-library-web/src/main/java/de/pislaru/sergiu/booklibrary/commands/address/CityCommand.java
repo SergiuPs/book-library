@@ -1,13 +1,12 @@
 package de.pislaru.sergiu.booklibrary.commands.address;
 
+import de.pislaru.sergiu.booklibrary.commands.BaseEntityCommand;
 import de.pislaru.sergiu.booklibrary.model.address.Region;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
-public class CityCommand {
-
-    private Long id;
+public class CityCommand extends BaseEntityCommand {
 
     @NotBlank
     private String name;
@@ -23,20 +22,9 @@ public class CityCommand {
         this.region = region;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {return name;}
-
     public void setName(String name) {this.name = name;}
-
     public Region getRegion() {return region;}
-
     public void setRegion(Region region) {this.region = region;}
 
     @Override
@@ -50,22 +38,21 @@ public class CityCommand {
 
         CityCommand city = (CityCommand) object;
 
-        return Objects.equals(id, city.id) &&
-                Objects.equals(name, city.name) &&
+        return  Objects.equals(name, city.name) &&
                 Objects.equals(region, city.region);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, region);
+        return Objects.hash(super.hashCode(), name, region);
     }
 
     @Override
     public String toString() {
         return "CityCommand {"
-                + "id=" + id
-                + ", name=" + name
+                + "name=" + name
                 + ", region=" + region.getName()
-                + "}";
+                + "}"
+                + super.toString();
     }
 }

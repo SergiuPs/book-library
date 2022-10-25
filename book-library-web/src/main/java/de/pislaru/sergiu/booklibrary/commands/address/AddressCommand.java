@@ -1,16 +1,13 @@
 package de.pislaru.sergiu.booklibrary.commands.address;
 
+import de.pislaru.sergiu.booklibrary.commands.BaseEntityCommand;
 import de.pislaru.sergiu.booklibrary.commands.UserCommand;
-
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
-public class AddressCommand {
-
-    private Long id;
+public class AddressCommand extends BaseEntityCommand {
 
     private CityCommand city;
-
     private UserCommand userCommand;
 
     @NotBlank
@@ -22,30 +19,17 @@ public class AddressCommand {
     public AddressCommand() {
     }
 
-    public Long getId() {return id;}
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getZip() {return zip;}
-
     public void setZip(String zip) {
         this.zip = zip;
     }
-
     public String getStreet() {return street;}
-
     public void setStreet(String street) {
         this.street = street;
     }
-
     public CityCommand getCity() {return city;}
-
     public void setCity(CityCommand city) {this.city = city;}
-
     public UserCommand getUserCommand() {return userCommand;}
-
     public void setUserCommand(UserCommand userCommand) {this.userCommand = userCommand;}
 
     @Override
@@ -59,8 +43,7 @@ public class AddressCommand {
 
         AddressCommand address = (AddressCommand) object;
 
-        return Objects.equals(id, address.id) &&
-                Objects.equals(city, address.city) &&
+        return  Objects.equals(city, address.city) &&
                 Objects.equals(userCommand, address.userCommand) &&
                 Objects.equals(zip, address.zip) &&
                 Objects.equals(street, address.street);
@@ -68,17 +51,17 @@ public class AddressCommand {
 
     @Override
     public int hashCode() {
-        return Objects.hash(city.hashCode(), zip, street);
+        return Objects.hash(super.hashCode(), city.hashCode(), zip, street);
     }
 
     @Override
     public String toString() {
         return "AddressCommand {"
-                + "id=" + id
-                + ", city=" + city.getName()
+                + "city=" + city.getName()
                 + ", region=" + city.getRegion()
                 + ", zip=" + zip
                 + ", street=" + street
-                + "}";
+                + "}"
+                + super.toString();
     }
 }
