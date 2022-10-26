@@ -5,17 +5,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
-public class SecurityUser implements UserDetails {
-
-    private final UserInfo user;
-
-    public SecurityUser(UserInfo user) {
-        this.user = user;
-    }
+public record SecurityUser(UserInfo user) implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return user.getRoles();
     }
 
     @Override
@@ -46,9 +40,5 @@ public class SecurityUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public UserInfo getUser() {
-        return user;
     }
 }
