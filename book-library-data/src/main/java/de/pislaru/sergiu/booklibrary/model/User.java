@@ -14,13 +14,13 @@ public class User extends BaseEntity {
     private String email;
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", targetEntity = Address.class)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", targetEntity = Address.class, fetch = FetchType.EAGER)
     private Set<Address> addresses = new HashSet<>();
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
-    })
+    }, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -93,6 +93,10 @@ public class User extends BaseEntity {
     public void addAddress(Address address) {
         addresses.add(address);
         address.setUser(this);
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
     }
 
     public Set<Role> getRoles() {

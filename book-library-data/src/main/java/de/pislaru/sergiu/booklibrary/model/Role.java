@@ -1,8 +1,8 @@
 package de.pislaru.sergiu.booklibrary.model;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,8 +14,8 @@ public class Role extends BaseEntity {
 
     private String name;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    private Set<User> users;
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users = new HashSet<>();
 
     public Role() {
     }
