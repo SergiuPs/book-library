@@ -1,8 +1,9 @@
 package de.pislaru.sergiu.booklibrary.model;
 
+import org.springframework.security.core.GrantedAuthority;
 import java.util.Objects;
 
-public class RoleInfo extends BaseEntityInfo {
+public class RoleInfo extends BaseEntityInfo implements GrantedAuthority {
 
     private String name;
 
@@ -37,5 +38,10 @@ public class RoleInfo extends BaseEntityInfo {
                 + ", name=" + name
                 + "}"
                 + super.toString();
+    }
+
+    @Override
+    public String getAuthority() {
+        return name;
     }
 }
