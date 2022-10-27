@@ -17,38 +17,18 @@ public class BaseEntityCommand {
     public BaseEntityCommand() {
     }
 
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
     public Long getVersion() {return version;}
     public void setVersion(Long version) {this.version = version;}
-    public String getCreatedBy() {
-        return createdBy;
-    }
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    public String getCreatedBy() {return createdBy;}
+    public void setCreatedBy(String createdBy) {this.createdBy = createdBy;}
+    public String getUpdatedBy() {return updatedBy;}
+    public void setUpdatedBy(String updatedBy) {this.updatedBy = updatedBy;}
+    public LocalDateTime getCreatedAt() {return createdAt;}
+    public void setCreatedAt(LocalDateTime createdAt) {this.createdAt = createdAt;}
+    public LocalDateTime getUpdatedAt() {return updatedAt;}
+    public void setUpdatedAt(LocalDateTime updatedAt) {this.updatedAt = updatedAt;}
 
     @Override
     public boolean equals(Object object) {
@@ -61,7 +41,7 @@ public class BaseEntityCommand {
 
         BaseEntityCommand baseEntity = (BaseEntityCommand) object;
 
-        return Objects.equals(id, baseEntity.getId()) &&
+        return  Objects.equals(id, baseEntity.getId()) &&
                 Objects.equals(version, baseEntity.version) &&
                 Objects.equals(createdBy, baseEntity.createdBy) &&
                 Objects.equals(createdAt, baseEntity.createdAt) &&

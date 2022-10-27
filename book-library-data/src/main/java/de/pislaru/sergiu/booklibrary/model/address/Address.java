@@ -33,33 +33,13 @@ public class Address extends BaseEntity {
         return city;
     }
 
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+    public void setCity(City city) {this.city = city;}
+    public String getZip() {return zip;}
+    public void setZip(String zip) {this.zip = zip;}
+    public String getStreet() {return street;}
+    public void setStreet(String street) {this.street = street;}
+    public User getUser() {return user;}
+    public void setUser(User user) {this.user = user;}
 
     @Override
     public boolean equals(Object object) {

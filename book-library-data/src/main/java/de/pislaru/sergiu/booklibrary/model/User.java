@@ -39,49 +39,17 @@ public class User extends BaseEntity {
         this.roles = roles;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Address> getAddresses() {
-        return addresses;
-    }
+    public String getFirstName() {return firstName;}
+    public void setFirstName(String firstName) {this.firstName = firstName;}
+    public String getLastName() {return lastName;}
+    public void setLastName(String lastName) {this.lastName = lastName;}
+    public String getUserName() {return userName;}
+    public void setUserName(String userName) {this.userName = userName;}
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;}
+    public String getPassword() {return password;}
+    public void setPassword(String password) {this.password = password;}
+    public Set<Address> getAddresses() {return addresses;}
 
     public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
@@ -95,17 +63,9 @@ public class User extends BaseEntity {
         address.setUser(this);
     }
 
-    public void addRole(Role role) {
-        roles.add(role);
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+    public void addRole(Role role) {roles.add(role);}
+    public Set<Role> getRoles() {return roles;}
+    public void setRoles(Set<Role> roles) {this.roles = roles;}
 
     @Override
     public boolean equals(Object object) {
@@ -118,7 +78,7 @@ public class User extends BaseEntity {
 
         User user = (User) object;
 
-        return Objects.equals(firstName, user.firstName) &&
+        return  Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(userName, user.userName) &&
                 Objects.equals(email, user.email) &&

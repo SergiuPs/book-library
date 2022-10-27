@@ -20,13 +20,9 @@ public class AddressCommand extends BaseEntityCommand {
     }
 
     public String getZip() {return zip;}
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
+    public void setZip(String zip) {this.zip = zip;}
     public String getStreet() {return street;}
-    public void setStreet(String street) {
-        this.street = street;
-    }
+    public void setStreet(String street) {this.street = street;}
     public CityCommand getCity() {return city;}
     public void setCity(CityCommand city) {this.city = city;}
     public UserCommand getUserCommand() {return userCommand;}

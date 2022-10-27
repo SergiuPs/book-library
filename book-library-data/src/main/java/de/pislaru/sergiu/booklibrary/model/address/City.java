@@ -15,7 +15,6 @@ public class City extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     private Region region;
 
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "city", targetEntity = Address.class)
     private Set<Address> addresses = new HashSet<>();
 
@@ -27,27 +26,12 @@ public class City extends BaseEntity {
         this.region = region;
     }
 
-    public String getName() {
-        return name;
-    }
-
+    public String getName() {return name;}
     public void setName(String name) {this.name = name;}
-
-    public Region getRegion() {
-        return region;
-    }
-
-    public void setRegion(Region region) {
-        this.region = region;
-    }
-
-    public Set<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(Set<Address> addresses) {
-        this.addresses = addresses;
-    }
+    public Region getRegion() {return region;}
+    public void setRegion(Region region) {this.region = region;}
+    public Set<Address> getAddresses() {return addresses;}
+    public void setAddresses(Set<Address> addresses) {this.addresses = addresses;}
 
     @Override
     public boolean equals(Object object) {
