@@ -20,6 +20,16 @@ public class UserInfo extends BaseEntityInfo {
     public UserInfo() {
     }
 
+    public UserInfo(String firstName, String lastName, String userName, String email, String password, Set<RoleInfo> roles, Set<AddressInfo> addresses) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+        this.roles = roles;
+        this.addresses = addresses;
+    }
+
     public String getFirstName() {return firstName;}
     public void setFirstName(String firstName) {this.firstName = firstName;}
     public String getLastName() {return lastName;}
