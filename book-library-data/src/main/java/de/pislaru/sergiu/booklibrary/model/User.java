@@ -3,15 +3,27 @@ package de.pislaru.sergiu.booklibrary.model;
 import de.pislaru.sergiu.booklibrary.model.address.Address;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
 public class User extends BaseEntity {
 
+    @Size(min = 2, max = 100)
     private String firstName;
+
+    @Size(min = 2, max = 100)
     private String lastName;
+
+    @Size(min = 3, max = 50)
     private String userName;
+
+    @Email
     private String email;
+
+    @Size(min = 8, max = 255)
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", targetEntity = Address.class, fetch = FetchType.EAGER)
@@ -24,6 +36,7 @@ public class User extends BaseEntity {
     @JoinTable(name = "user_role",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @NotEmpty
     private Set<Role> roles = new HashSet<>();
 
     public User() {

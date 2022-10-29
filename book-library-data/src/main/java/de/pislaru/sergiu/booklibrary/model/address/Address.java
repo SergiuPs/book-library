@@ -4,6 +4,8 @@ import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 import de.pislaru.sergiu.booklibrary.model.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -11,12 +13,18 @@ public class Address extends BaseEntity {
 
     @JoinColumn(name = "city_id")
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = City.class)
+    @NotNull
     private City city;
+
+    @Size(min = 1, max = 255)
     private String zip;
+
+    @Size(min = 3, max = 255)
     private String street;
 
     @JoinColumn(name = "user_id", nullable = false)
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+    @NotNull
     private User user;
 
     public Address() {

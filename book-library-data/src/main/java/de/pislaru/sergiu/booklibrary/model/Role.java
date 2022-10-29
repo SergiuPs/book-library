@@ -2,6 +2,9 @@ package de.pislaru.sergiu.booklibrary.model;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -15,7 +18,11 @@ public class Role extends BaseEntity {
     public static final String ROLE_LIBRARIAN= "ROLE_LIBRARIAN";
     public static final String ROLE_USER = "ROLE_USER";
 
+    @Size(min = 6, max = 50)
     private String name;
+
+    @Min(1)
+    @Max(99)
     private byte level;
 
     @ManyToMany(mappedBy = "roles")
