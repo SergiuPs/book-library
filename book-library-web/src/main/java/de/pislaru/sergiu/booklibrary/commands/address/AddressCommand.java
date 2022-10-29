@@ -2,19 +2,23 @@ package de.pislaru.sergiu.booklibrary.commands.address;
 
 import de.pislaru.sergiu.booklibrary.commands.BaseEntityCommand;
 import de.pislaru.sergiu.booklibrary.commands.UserCommand;
-import javax.validation.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 public class AddressCommand extends BaseEntityCommand {
 
+    @NotNull
     private CityCommand city;
-    private UserCommand userCommand;
 
-    @NotBlank
+    @Size(min = 1, max = 25)
     private String zip;
 
-    @NotBlank
+    @Size(min = 3, max = 255)
     private String street;
+
+    private UserCommand userCommand;
 
     public AddressCommand() {
     }

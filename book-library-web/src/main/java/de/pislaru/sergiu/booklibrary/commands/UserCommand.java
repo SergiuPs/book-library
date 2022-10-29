@@ -1,30 +1,30 @@
 package de.pislaru.sergiu.booklibrary.commands;
 
-
 import de.pislaru.sergiu.booklibrary.commands.address.AddressCommand;
 import de.pislaru.sergiu.booklibrary.commands.address.CityCommand;
 import de.pislaru.sergiu.booklibrary.model.address.Region;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class UserCommand extends BaseEntityCommand {
 
-    @NotBlank
+    @Size(min = 2, max = 100)
     private String firstName;
 
-    @NotBlank
+    @Size(min = 2, max = 100)
     private String lastName;
 
-    @NotBlank
+    @Email
     private String email;
 
-    @NotBlank
+    @Size(min = 3, max = 50)
     private String userName;
 
-    @NotBlank
+    @Size(min = 8, max = 255)
     private String password;
 
     private Set<RoleCommand> roles = new HashSet<>();

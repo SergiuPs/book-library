@@ -3,15 +3,16 @@ package de.pislaru.sergiu.booklibrary.commands.address;
 import de.pislaru.sergiu.booklibrary.commands.BaseEntityCommand;
 import de.pislaru.sergiu.booklibrary.model.address.Region;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 public class CityCommand extends BaseEntityCommand {
 
-    @NotBlank
+    @Size(min = 1, max = 100)
     private String name;
 
-    @NotBlank
+    @NotNull
     private Region region;
 
     public CityCommand() {
