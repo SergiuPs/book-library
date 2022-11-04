@@ -10,8 +10,7 @@ import de.pislaru.sergiu.booklibrary.utils.ModelMapperUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class DatabaseUserService implements UserService {
@@ -56,12 +55,10 @@ public class DatabaseUserService implements UserService {
     }
 
     @Override
-    public Set<UserInfo> getAllUsersWithRoleLevelEqualOrLessThan(byte level) {
-        Set<User> users = userRepository.getAllByRolesLevelLessThanEqual(level);
-        Set<UserInfo> userInfos = new HashSet<>();
-        ModelMapperUtils.mapSet(users, UserInfo.class, modelMapper);
+    public List<UserInfo> getAllUsersWithRoleLevelEqualOrLessThan(byte level) {
+        List<User> users = userRepository.getAllDistinctByRolesLevelLessThanEqualOrderById(level);
+        return ModelMapperUtils.mapList(users, UserInfo.class, modelMapper);
 
-        return userInfos;
     }
 
     @Override
