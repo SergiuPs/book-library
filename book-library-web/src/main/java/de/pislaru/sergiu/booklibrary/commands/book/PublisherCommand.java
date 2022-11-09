@@ -2,16 +2,26 @@ package de.pislaru.sergiu.booklibrary.commands.book;
 
 import de.pislaru.sergiu.booklibrary.commands.BaseEntityCommand;
 import de.pislaru.sergiu.booklibrary.model.book.Book;
+import org.hibernate.validator.constraints.URL;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class PublisherCommand extends BaseEntityCommand {
 
+    @Size(min = 1, max = 255)
     private String name;
+
+    @Email
     private String email;
+
+    @Size(min = 1, max = 50)
     private String phone;
+
+    @URL
     private String homePage;
 
     private Set<Book> books = new HashSet<>();

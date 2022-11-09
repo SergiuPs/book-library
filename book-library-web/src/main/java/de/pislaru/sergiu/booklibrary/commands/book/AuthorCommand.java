@@ -3,6 +3,8 @@ package de.pislaru.sergiu.booklibrary.commands.book;
 import de.pislaru.sergiu.booklibrary.commands.BaseEntityCommand;
 import de.pislaru.sergiu.booklibrary.model.book.Book;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
@@ -10,10 +12,18 @@ import java.util.Set;
 
 public class AuthorCommand extends BaseEntityCommand {
 
+    @Size(min = 2, max = 100)
     private String firstName;
+
+    @Size(min = 2, max = 100)
     private String lastName;
+
+    @Size(min = 3, max = 100)
     private String birthPlace;
+
+    @Past
     private LocalDate bornOn;
+
     private LocalDate diedOn;
     private String biography;
 

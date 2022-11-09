@@ -3,12 +3,14 @@ package de.pislaru.sergiu.booklibrary.commands.book;
 import de.pislaru.sergiu.booklibrary.commands.BaseEntityCommand;
 import de.pislaru.sergiu.booklibrary.model.book.Book;
 
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class GenreCommand extends BaseEntityCommand {
 
+    @Size(min = 1, max = 100)
     private String name;
 
     private Set<Book> books = new HashSet<>();

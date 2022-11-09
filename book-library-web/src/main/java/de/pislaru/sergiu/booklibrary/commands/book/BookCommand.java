@@ -6,19 +6,36 @@ import de.pislaru.sergiu.booklibrary.model.book.CoverType;
 import de.pislaru.sergiu.booklibrary.model.book.Genre;
 import de.pislaru.sergiu.booklibrary.model.book.Publisher;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class BookCommand extends BaseEntityCommand {
 
+    @Size(min = 1, max = 255)
     private String title;
+
+    @Size(min = 1, max = 255)
     private String originalTitle;
+
+    @Size(min = 1, max = 100)
     private String language;
+
+    @NotNull
     private CoverType coverType;
+
+    @Size(min = 1, max = 7)
     private String numberOfPages;
+
+    @Size(min = 10, max = 10)
     private String ISBN_10;
+
+    @Size(min = 13, max = 13)
     private String ISBN_13;
+
+
     private String description;
 
     private Set<Author> authors = new HashSet<>();
