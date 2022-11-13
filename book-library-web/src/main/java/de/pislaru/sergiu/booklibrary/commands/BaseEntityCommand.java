@@ -9,22 +9,26 @@ public class BaseEntityCommand {
 
     private Long id;
     private Long version;
-    private String createdBy;
-    private String updatedBy;
+    private Long createdBy;
+    private Long updatedBy;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     public BaseEntityCommand() {
     }
 
+    public boolean isNew() {
+        return this.id == null;
+    }
+
     public Long getId() {return id;}
     public void setId(Long id) {this.id = id;}
     public Long getVersion() {return version;}
     public void setVersion(Long version) {this.version = version;}
-    public String getCreatedBy() {return createdBy;}
-    public void setCreatedBy(String createdBy) {this.createdBy = createdBy;}
-    public String getUpdatedBy() {return updatedBy;}
-    public void setUpdatedBy(String updatedBy) {this.updatedBy = updatedBy;}
+    public Long getCreatedBy() {return createdBy;}
+    public void setCreatedBy(Long createdBy) {this.createdBy = createdBy;}
+    public Long getUpdatedBy() {return updatedBy;}
+    public void setUpdatedBy(Long updatedBy) {this.updatedBy = updatedBy;}
     public LocalDateTime getCreatedAt() {return createdAt;}
     public void setCreatedAt(LocalDateTime createdAt) {this.createdAt = createdAt;}
     public LocalDateTime getUpdatedAt() {return updatedAt;}
