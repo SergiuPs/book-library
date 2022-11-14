@@ -60,7 +60,7 @@ public class BaseEntityCommand {
 
     @Override
     public String toString() {
-        return "Base Entity Info { "
+        return "Base Entity Command { "
                 + "id=" + id
                 + ", version=" + version
                 + ", created-by=" + createdBy
