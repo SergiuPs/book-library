@@ -11,6 +11,10 @@ import java.util.Objects;
 @Entity
 public class Address extends BaseEntity {
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "recipient_id", referencedColumnName = "id")
+    private Recipient recipient;
+
     @JoinColumn(name = "city_id")
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = City.class)
     @NotNull
@@ -27,20 +31,32 @@ public class Address extends BaseEntity {
     @NotNull
     private User user;
 
+    @Column(name = "def_bil_address")
+    private boolean defaultBillingAddress;
+
+    @Column(name = "def_ship_address")
+    private boolean defaultShippingAddress;
+
     public Address() {
     }
 
-    public Address(City city, String zip, String street, User user) {
+    public Address(Recipient recipient, City city, String zip, String street, User user,
+                   boolean defaultBillingAddress, boolean defaultShippingAddress) {
+        this.recipient = recipient;
         this.city = city;
         this.zip = zip;
         this.street = street;
         this.user = user;
+        this.defaultBillingAddress = defaultBillingAddress;
+        this.defaultShippingAddress = defaultShippingAddress;
     }
 
+
+    public Recipient getRecipient() {return recipient;}
+    public void setRecipient(Recipient recipient) {this.recipient = recipient;}
     public City getCity() {
         return city;
     }
-
     public void setCity(City city) {this.city = city;}
     public String getZip() {return zip;}
     public void setZip(String zip) {this.zip = zip;}
@@ -48,6 +64,10 @@ public class Address extends BaseEntity {
     public void setStreet(String street) {this.street = street;}
     public User getUser() {return user;}
     public void setUser(User user) {this.user = user;}
+    public boolean isDefaultBillingAddress() {return defaultBillingAddress;}
+    public void setDefaultBillingAddress(boolean defaultBillingAddress) {this.defaultBillingAddress = defaultBillingAddress;}
+    public boolean isDefaultShippingAddress() {return defaultShippingAddress;}
+    public void setDefaultShippingAddress(boolean defaultShippingAddress) {this.defaultShippingAddress = defaultShippingAddress;}
 
     @Override
     public boolean equals(Object object) {
@@ -58,25 +78,32 @@ public class Address extends BaseEntity {
             return false;
         }
 
-        Address address = (Address) object;
+        Address that = (Address) object;
 
-        return Objects.equals(city, address.city) &&
-                Objects.equals(zip, address.zip) &&
-                Objects.equals(street, address.street);
+        return  Objects.equals(this.recipient, that.recipient) &&
+                Objects.equals(this.city, that.city) &&
+                Objects.equals(this.zip, that.zip) &&
+                Objects.equals(this.street, that.street) &&
+                this.defaultShippingAddress == that.defaultShippingAddress &&
+                this.defaultBillingAddress == that.defaultBillingAddress;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), city.hashCode(), zip, street);
+        return Objects.hash(super.hashCode(), recipient.hashCode(), city.hashCode(),
+                zip, street, defaultBillingAddress, defaultShippingAddress);
     }
 
     @Override
     public String toString() {
         return "Address {"
-                + "city=" + city.getName()
+                + "recipient=" + recipient.toString()
+                + ", city=" + city.getName()
                 + ", region=" + city.getRegion()
                 + ", zip=" + zip
                 + ", street" + street
+                + ", default-billing-address" + defaultBillingAddress
+                + ", default-shipping-address" + defaultShippingAddress
                 + "}"
                 + super.toString();
     }
