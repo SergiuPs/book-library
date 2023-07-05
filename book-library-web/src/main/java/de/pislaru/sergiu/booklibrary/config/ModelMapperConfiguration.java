@@ -1,6 +1,9 @@
 package de.pislaru.sergiu.booklibrary.config;
 
+import de.pislaru.sergiu.booklibrary.commands.RoleCommand;
 import de.pislaru.sergiu.booklibrary.commands.address.AddressCommand;
+import de.pislaru.sergiu.booklibrary.model.Role;
+import de.pislaru.sergiu.booklibrary.model.RoleInfo;
 import de.pislaru.sergiu.booklibrary.model.address.Address;
 import de.pislaru.sergiu.booklibrary.model.address.AddressInfo;
 import org.modelmapper.ModelMapper;
@@ -29,6 +32,14 @@ public class ModelMapperConfiguration {
 
         modelMapper.typeMap(Address.class, AddressInfo.class).addMappings(mapper -> {
             mapper.map(Address::getUser, AddressInfo::setUserInfo);
+        });
+
+        modelMapper.typeMap(Role.class, RoleInfo.class).addMappings(mapper -> {
+            mapper.map(Role::getPermissions, RoleInfo::setPermissionInfos);
+        });
+
+        modelMapper.typeMap(RoleInfo.class, RoleCommand.class).addMappings(mapper -> {
+            mapper.map(RoleInfo::getPermissionInfos, RoleCommand::setPermissions);
         });
 
         return modelMapper;
