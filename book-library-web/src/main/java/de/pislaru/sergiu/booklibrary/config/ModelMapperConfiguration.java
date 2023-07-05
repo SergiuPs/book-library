@@ -35,11 +35,11 @@ public class ModelMapperConfiguration {
         });
 
         modelMapper.typeMap(Role.class, RoleInfo.class).addMappings(mapper -> {
-            mapper.map(Role::getPermissions, RoleInfo::setPermissionInfos);
+            mapper.map(Role::getPermissions, RoleInfo::setPermissions);
         });
 
         modelMapper.typeMap(RoleInfo.class, RoleCommand.class).addMappings(mapper -> {
-            mapper.map(RoleInfo::getPermissionInfos, RoleCommand::setPermissions);
+            mapper.map(RoleInfo::getPermissions, RoleCommand::setPermissions);
         });
 
         return modelMapper;
