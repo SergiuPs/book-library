@@ -1,59 +1,50 @@
 package de.pislaru.sergiu.booklibrary.commands.address;
 
-import de.pislaru.sergiu.booklibrary.commands.BaseEntityCommand;
 import de.pislaru.sergiu.booklibrary.model.address.Region;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class CityCommand extends BaseEntityCommand {
+public class CityResponse implements Serializable {
 
-    @Size(min = 1, max = 100)
+    private Long id;
     private String name;
-
-    @NotNull
     private Region region;
 
-    public CityCommand() {
+    public CityResponse() {
     }
-
-    public CityCommand(String name, Region region) {
-        this.name = name;
-        this.region = region;
-    }
-
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
-    public Region getRegion() {return region;}
-    public void setRegion(Region region) {this.region = region;}
 
     @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
-        if (object == null || this.getClass() != object.getClass() || !super.equals(object)) {
+        if (!(object instanceof CityResponse that)) {
             return false;
         }
 
-        CityCommand city = (CityCommand) object;
-
-        return  Objects.equals(name, city.name) &&
-                Objects.equals(region, city.region);
+        return  Objects.equals(this.id, that.id) &&
+                Objects.equals(this.name, that.name) &&
+                Objects.equals(this.region, that.region);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, region);
+        return Objects.hash(id, name, region);
     }
 
     @Override
     public String toString() {
-        return "CityCommand {"
-                + "name=" + name
+        return "CityResponse {"
+                + "id=" + id
+                + ", name=" + name
                 + ", region=" + region.getName()
-                + "}"
-                + super.toString();
+                + "}";
     }
+
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+    public Region getRegion() {return region;}
+    public void setRegion(Region region) {this.region = region;}
 }

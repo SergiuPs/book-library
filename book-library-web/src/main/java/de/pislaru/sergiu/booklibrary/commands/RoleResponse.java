@@ -1,21 +1,18 @@
 package de.pislaru.sergiu.booklibrary.commands;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class RoleCommand implements Serializable {
+public class RoleResponse implements Serializable {
 
     private Long id;
     private String name;
     private byte level;
-    private Set<PermissionCommand> permissions = new HashSet<>();
+    private Set<PermissionResponse> permissions = new HashSet<>();
 
-    public RoleCommand() {
+    public RoleResponse() {
     }
 
     @Override
@@ -23,7 +20,7 @@ public class RoleCommand implements Serializable {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof RoleCommand that)) {
+        if (!(object instanceof RoleResponse that)) {
             return false;
         }
 
@@ -52,6 +49,6 @@ public class RoleCommand implements Serializable {
     public void setName(String name) {this.name = name;}
     public byte getLevel() {return level;}
     public void setLevel(byte level) {this.level = level;}
-    public Set<PermissionCommand> getPermissions() {return permissions;}
-    public void setPermissions(Set<PermissionCommand> permissions) {this.permissions = permissions;}
+    public Set<PermissionResponse> getPermissions() {return permissions;}
+    public void setPermissions(Set<PermissionResponse> permissions) {this.permissions = permissions;}
 }

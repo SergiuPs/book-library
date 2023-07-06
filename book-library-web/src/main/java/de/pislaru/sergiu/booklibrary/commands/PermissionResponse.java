@@ -1,40 +1,41 @@
 package de.pislaru.sergiu.booklibrary.commands;
 
-import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class PermissionCommand extends BaseEntityCommand {
+public class PermissionResponse implements Serializable {
 
-    @Size(min = 3, max = 50)
+    private Long id;
     private String name;
 
-    public PermissionCommand() {
+    public PermissionResponse() {
     }
-
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
 
     public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
-        if (object == null || this.getClass() != object .getClass() || !super.equals(object)) {
+        if (!(object instanceof PermissionResponse that)) {
             return false;
         }
 
-        PermissionCommand that = (PermissionCommand) object;
-
-        return  Objects.equals(this.name, that.name);
+        return  Objects.equals(this.id, that.id) &&
+                Objects.equals(this.name, that.name);
     }
 
     @Override
-    public int hashCode() {return Objects.hash(super.hashCode(), name);}
+    public int hashCode() {return Objects.hash(id, name);}
 
     @Override
     public String toString() {
         return "PermissionCommand {"
-                + "name=" + name
-                + "}"
-                + super.toString();
+                + "id=" + id
+                + ", name=" + name
+                + "}";
     }
+
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
 }

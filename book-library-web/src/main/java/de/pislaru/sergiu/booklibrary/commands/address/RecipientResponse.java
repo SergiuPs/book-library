@@ -1,22 +1,17 @@
 package de.pislaru.sergiu.booklibrary.commands.address;
 
-import de.pislaru.sergiu.booklibrary.commands.BaseEntityCommand;
 import de.pislaru.sergiu.booklibrary.model.address.RecipientTitle;
-import de.pislaru.sergiu.booklibrary.model.address.Region;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class RecipientCommand implements Serializable {
+public class RecipientResponse implements Serializable {
 
     private Long id;
     private RecipientTitle title;
     private String firstName;
     private String lastName;
 
-    public RecipientCommand() {
+    public RecipientResponse() {
     }
 
     @Override
@@ -24,7 +19,7 @@ public class RecipientCommand implements Serializable {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof RecipientCommand that)) {
+        if (!(object instanceof RecipientResponse that)) {
             return false;
         }
 
@@ -42,13 +37,15 @@ public class RecipientCommand implements Serializable {
     @Override
     public String toString() {
         return "RecipientResponse {"
-                + "title=" + title.getTitle()
+                + "id=" + id
+                + ", title=" + title.getTitle()
                 + ", first-name=" + firstName
                 + ", last-name=" + lastName
-                + "}"
-                + super.toString();
+                + "}";
     }
 
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
     public RecipientTitle getTitle() {return title;}
     public void setTitle(RecipientTitle title) {this.title = title;}
     public String getFirstName() {return firstName;}
