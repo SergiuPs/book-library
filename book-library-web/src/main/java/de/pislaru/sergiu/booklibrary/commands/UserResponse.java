@@ -6,32 +6,31 @@ import de.pislaru.sergiu.booklibrary.model.address.Region;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class UserCommand extends BaseEntityCommand {
+public class UserCommand implements Serializable {
 
-    @Size(min = 2, max = 100)
+    private Long id;
     private String firstName;
-
-    @Size(min = 2, max = 100)
     private String lastName;
-
-    @Email
     private String email;
-
-    @Size(min = 3, max = 50)
     private String userName;
-
-    @Size(min = 8, max = 255)
-    private String password;
-
     private Set<RoleCommand> roles = new HashSet<>();
-
     private Set<AddressCommand> addresses = new HashSet<>();
 
     public UserCommand() {
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {return firstName;}
@@ -56,12 +55,6 @@ public class UserCommand extends BaseEntityCommand {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
     public Set<RoleCommand> getRoles() {return roles;}
     public void setRoles(Set<RoleCommand> roles) {
         this.roles = roles;
@@ -79,31 +72,32 @@ public class UserCommand extends BaseEntityCommand {
             return false;
         }
 
-        UserCommand user = (UserCommand) object;
+        UserCommand that = (UserCommand) object;
 
-        return  Objects.equals(firstName, user.firstName) &&
-                Objects.equals(lastName, user.lastName) &&
-                Objects.equals(userName, user.userName) &&
-                Objects.equals(email, user.email) &&
-                addresses.equals(user.addresses) &&
-                roles.equals(user.roles);
+        return  Objects.equals(this.id, that.id) &&
+                Objects.equals(this.firstName, that.firstName) &&
+                Objects.equals(this.lastName, that.lastName) &&
+                Objects.equals(this.userName, that.userName) &&
+                Objects.equals(this.email, that.email) &&
+                this.addresses.equals(that.addresses) &&
+                this.roles.equals(that.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), firstName, lastName, userName, email, password, addresses, roles);
+        return Objects.hash(id, firstName, lastName, userName, email, addresses, roles);
     }
 
     @Override
     public String toString() {
         return "UserCommand {"
-                + "first-name=" + firstName
+                + "id=" + id
+                + " first-name=" + firstName
                 + ", last-name=" + lastName
                 + ", e-mail=" + email
                 + ", user-name=" + userName
                 + ", addresses: " + addresses
                 + " roles: " + roles
-                + "}"
-                + super.toString();
+                + "}";
     }
 }
