@@ -1,16 +1,17 @@
-package de.pislaru.sergiu.booklibrary.commands.address;
+package de.pislaru.sergiu.booklibrary.payload.response.user.book;
 
-import de.pislaru.sergiu.booklibrary.model.address.Region;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-public class CityResponse implements Serializable {
+public class GenreResponse implements Serializable {
 
     private Long id;
     private String name;
-    private Region region;
+    private Set<BookResponse> books = new HashSet<>();
 
-    public CityResponse() {
+    public GenreResponse() {
     }
 
     @Override
@@ -18,26 +19,24 @@ public class CityResponse implements Serializable {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof CityResponse that)) {
+        if (!(object instanceof GenreResponse that)) {
             return false;
         }
 
         return  Objects.equals(this.id, that.id) &&
-                Objects.equals(this.name, that.name) &&
-                Objects.equals(this.region, that.region);
+                Objects.equals(this.name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, region);
+        return Objects.hash(id, name);
     }
 
     @Override
     public String toString() {
-        return "CityResponse {"
+        return "GenreResponse {"
                 + "id=" + id
                 + ", name=" + name
-                + ", region=" + region.getName()
                 + "}";
     }
 
@@ -45,6 +44,6 @@ public class CityResponse implements Serializable {
     public void setId(Long id) {this.id = id;}
     public String getName() {return name;}
     public void setName(String name) {this.name = name;}
-    public Region getRegion() {return region;}
-    public void setRegion(Region region) {this.region = region;}
+    public Set<BookResponse> getBooks() {return books;}
+    public void setBooks(Set<BookResponse> books) {this.books = books;}
 }

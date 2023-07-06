@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.commands.book;
+package de.pislaru.sergiu.booklibrary.payload.response.user.book;
 
 import java.io.Serializable;
 import java.time.LocalDate;

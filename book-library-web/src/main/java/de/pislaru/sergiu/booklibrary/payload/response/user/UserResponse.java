@@ -1,6 +1,6 @@
-package de.pislaru.sergiu.booklibrary.commands;
+package de.pislaru.sergiu.booklibrary.payload.response.user;
 
-import de.pislaru.sergiu.booklibrary.commands.address.AddressResponse;
+import de.pislaru.sergiu.booklibrary.payload.response.user.address.AddressResponse;
 
 import java.io.Serializable;
 import java.util.HashSet;

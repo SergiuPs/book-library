@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.commands;
+package de.pislaru.sergiu.booklibrary.payload.response.user;
 
 import java.io.Serializable;
 import java.util.HashSet;

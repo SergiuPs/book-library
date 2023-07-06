@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.commands.address;
+package de.pislaru.sergiu.booklibrary.payload.response.user.address;
 
 import java.io.Serializable;
 import java.util.Objects;
