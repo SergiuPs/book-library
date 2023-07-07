@@ -1,4 +1,6 @@
-package de.pislaru.sergiu.booklibrary.model.address;
+package de.pislaru.sergiu.booklibrary.dto.address;
+
+import de.pislaru.sergiu.booklibrary.model.address.RecipientTitle;
 
 import java.util.Objects;
 

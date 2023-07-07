@@ -1,6 +1,6 @@
-package de.pislaru.sergiu.booklibrary.model;
+package de.pislaru.sergiu.booklibrary.dto;
 
-import de.pislaru.sergiu.booklibrary.model.address.AddressDTO;
+import de.pislaru.sergiu.booklibrary.dto.address.AddressDTO;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;

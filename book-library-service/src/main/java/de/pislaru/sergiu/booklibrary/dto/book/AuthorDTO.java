@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.model.book;
+package de.pislaru.sergiu.booklibrary.dto.book;
 
 import java.time.LocalDate;
 import java.util.HashSet;

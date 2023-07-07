@@ -1,4 +1,6 @@
-package de.pislaru.sergiu.booklibrary.model.book;
+package de.pislaru.sergiu.booklibrary.dto.book;
+
+import de.pislaru.sergiu.booklibrary.model.book.Book;
 
 import java.util.HashSet;
 import java.util.Objects;
