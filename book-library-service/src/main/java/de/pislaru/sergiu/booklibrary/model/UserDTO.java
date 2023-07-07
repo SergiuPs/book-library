@@ -1,11 +1,11 @@
 package de.pislaru.sergiu.booklibrary.model;
 
-import de.pislaru.sergiu.booklibrary.model.address.AddressInfo;
+import de.pislaru.sergiu.booklibrary.model.address.AddressDTO;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class UserInfo {
+public class UserDTO {
 
     private Long id;
     private String firstName;
@@ -13,13 +13,13 @@ public class UserInfo {
     private String email;
     private String userName;
     private String password;
-    private Set<RoleInfo> roles = new HashSet<>();
-    private Set<AddressInfo> addresses = new HashSet<>();
+    private Set<RoleDTO> roles = new HashSet<>();
+    private Set<AddressDTO> addresses = new HashSet<>();
 
-    public UserInfo() {
+    public UserDTO() {
     }
 
-    public UserInfo(String firstName, String lastName, String userName, String email, String password, Set<RoleInfo> roles, Set<AddressInfo> addresses) {
+    public UserDTO(String firstName, String lastName, String userName, String email, String password, Set<RoleDTO> roles, Set<AddressDTO> addresses) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -33,7 +33,7 @@ public class UserInfo {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof UserInfo that)) {
+        if (!(object instanceof UserDTO that)) {
             return false;
         }
 
@@ -48,7 +48,7 @@ public class UserInfo {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, userName, email, password, addresses, roles);
+        return Objects.hash(id, firstName, lastName, userName, email, password, addresses.hashCode(), roles.hashCode());
     }
 
     @Override
@@ -76,8 +76,8 @@ public class UserInfo {
     public void setUserName(String userName) {this.userName = userName;}
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
-    public Set<RoleInfo> getRoles() {return roles;}
-    public void setRoles(Set<RoleInfo> roles) {this.roles = roles;}
-    public Set<AddressInfo> getAddresses() {return addresses;}
-    public void setAddresses(Set<AddressInfo> addresses) {this.addresses = addresses;}
+    public Set<RoleDTO> getRoles() {return roles;}
+    public void setRoles(Set<RoleDTO> roles) {this.roles = roles;}
+    public Set<AddressDTO> getAddresses() {return addresses;}
+    public void setAddresses(Set<AddressDTO> addresses) {this.addresses = addresses;}
 }

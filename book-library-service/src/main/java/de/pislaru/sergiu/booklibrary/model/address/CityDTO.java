@@ -1,49 +1,47 @@
 package de.pislaru.sergiu.booklibrary.model.address;
 
-import de.pislaru.sergiu.booklibrary.model.BaseEntityInfo;
-
 import java.util.Objects;
 
-public class CityInfo extends BaseEntityInfo {
+public class CityDTO {
 
+    private Long id;
     private String name;
     private Region region;
 
-    public CityInfo() {
+    public CityDTO() {
     }
-
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
-    public Region getRegion() {return region;}
-    public void setRegion(Region region) {this.region = region;}
-
     @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
-        if (object == null || this.getClass() != object.getClass() || !super.equals(object)) {
+        if (!(object instanceof CityDTO that)) {
             return false;
         }
 
-        CityInfo city = (CityInfo) object;
-
-        return  Objects.equals(name, city.name) &&
-                Objects.equals(region, city.region);
+        return  Objects.equals(this.id, that.id) &&
+                Objects.equals(this.name, that.name) &&
+                Objects.equals(this.region, that.region);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, region);
+        return Objects.hash(id, name, region);
     }
 
     @Override
     public String toString() {
-        return "CityInfo {"
-                + "name=" + name
+        return "CityDTO {"
+                + "id=" + id
+                + ", name=" + name
                 + ", region=" + region.getName()
-                + "}"
-                + super.toString();
+                + "}";
     }
 
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+    public Region getRegion() {return region;}
+    public void setRegion(Region region) {this.region = region;}
 }

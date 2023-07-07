@@ -1,53 +1,53 @@
 package de.pislaru.sergiu.booklibrary.model.address;
 
-import de.pislaru.sergiu.booklibrary.model.BaseEntityInfo;
-
 import java.util.Objects;
 
-public class RecipientInfo extends BaseEntityInfo {
+public class RecipientDTO {
 
+    private Long id;
     private RecipientTitle title;
     private String firstName;
     private String lastName;
 
-    public RecipientInfo() {
+    public RecipientDTO() {
     }
-
-    public RecipientTitle getTitle() {return title;}
-    public void setTitle(RecipientTitle title) {this.title = title;}
-    public String getFirstName() {return firstName;}
-    public void setFirstName(String firstName) {this.firstName = firstName;}
-    public String getLastName() {return lastName;}
-    public void setLastName(String lastName) {this.lastName = lastName;}
 
     @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
-        if (object == null || this.getClass() != object.getClass() || !super.equals(object)) {
+        if (!(object instanceof RecipientDTO that)) {
             return false;
         }
 
-        RecipientInfo that = (RecipientInfo) object;
-
-        return  Objects.equals(this.title, that.title) &&
+        return  Objects.equals(this.id, that.id) &&
+                Objects.equals(this.title, that.title) &&
                 Objects.equals(this.firstName, that.firstName) &&
                 Objects.equals(this.lastName, that.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), title, firstName, lastName);
+        return Objects.hash(id, title, firstName, lastName);
     }
 
     @Override
     public String toString() {
-        return "RecipientInfo {"
-                + "title=" + title.getTitle()
+        return "RecipientDTO {"
+                + "id=" + id
+                + ", title=" + title.getTitle()
                 + ", first-name=" + firstName
                 + ", last-name=" + lastName
-                + "}"
-                + super.toString();
+                + "}";
     }
+
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
+    public RecipientTitle getTitle() {return title;}
+    public void setTitle(RecipientTitle title) {this.title = title;}
+    public String getFirstName() {return firstName;}
+    public void setFirstName(String firstName) {this.firstName = firstName;}
+    public String getLastName() {return lastName;}
+    public void setLastName(String lastName) {this.lastName = lastName;}
 }

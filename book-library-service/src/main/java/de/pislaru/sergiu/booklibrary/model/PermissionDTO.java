@@ -6,39 +6,35 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Objects;
 
 
-public class PermissionInfo extends BaseEntityInfo implements GrantedAuthority {
+public class PermissionDTO implements GrantedAuthority {
 
+    private Long id;
     private String name;
 
-    public PermissionInfo() {
+    public PermissionDTO() {
     }
-
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
-
     @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
-        if (object == null || this.getClass() != object .getClass() || !super.equals(object)) {
+        if (!(object instanceof PermissionDTO that)) {
             return false;
         }
 
-        PermissionInfo that = (PermissionInfo) object;
-
-        return Objects.equals(this.name, that.name);
+        return  Objects.equals(this.id, that.id) &&
+                Objects.equals(this.name, that.name);
     }
 
     @Override
-    public int hashCode() {return Objects.hash(super.hashCode(), name);}
+    public int hashCode() {return Objects.hash(id, name);}
 
     @Override
     public String toString() {
-        return "PermissionInfo {"
-                + "name=" + name
-                + "}"
-                + super.toString();
+        return "PermissionDTO {"
+                + "id=" + id
+                + ", name=" + name
+                + "}";
     }
 
     @JsonIgnore
@@ -46,4 +42,9 @@ public class PermissionInfo extends BaseEntityInfo implements GrantedAuthority {
     public String getAuthority() {
         return this.name;
     }
+
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
 }

@@ -7,49 +7,42 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class RoleInfo extends BaseEntityInfo implements GrantedAuthority {
+public class RoleDTO implements GrantedAuthority {
 
+    private Long id;
     private String name;
     private byte level;
-    private Set<PermissionInfo> permissions = new HashSet<>();
+    private Set<PermissionDTO> permissions = new HashSet<>();
 
-    public RoleInfo() {
+    public RoleDTO() {
     }
-
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
-    public byte getLevel() {return level;}
-    public void setLevel(byte level) {this.level = level;}
-    public Set<PermissionInfo> getPermissions() {return permissions;}
-    public void setPermissions(Set<PermissionInfo> permissions) {this.permissions = permissions;}
 
     @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
-        if (object == null || this.getClass() != object .getClass() || !super.equals(object)) {
+        if (!(object instanceof RoleDTO that)) {
             return false;
         }
 
-        RoleInfo that = (RoleInfo) object;
-
-        return  Objects.equals(this.name, that.name) &&
+        return  Objects.equals(this.id, that.id) &&
+                Objects.equals(this.name, that.name) &&
                 Objects.equals(this.level, that.level) &&
-                this.permissions.equals(that.permissions);
+                Objects.equals(this.permissions, that.permissions);
     }
 
     @Override
-    public int hashCode() {return Objects.hash(super.hashCode(), name, level, permissions.hashCode());}
+    public int hashCode() {return Objects.hash(id, name, level, permissions.hashCode());}
 
     @Override
     public String toString() {
-        return "RoleInfo {"
-                + "name=" + name
+        return "RoleDTO {"
+                + "id=" + id
+                + ", name=" + name
                 + ", level=" + level
                 + ", permissionInfos=" + permissions.toString()
-                + "}"
-                + super.toString();
+                + "}";
     }
 
     @JsonIgnore
@@ -57,4 +50,13 @@ public class RoleInfo extends BaseEntityInfo implements GrantedAuthority {
     public String getAuthority() {
         return this.name;
     }
+
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+    public byte getLevel() {return level;}
+    public void setLevel(byte level) {this.level = level;}
+    public Set<PermissionDTO> getPermissions() {return permissions;}
+    public void setPermissions(Set<PermissionDTO> permissions) {this.permissions = permissions;}
 }
