@@ -1,5 +1,6 @@
 package de.pislaru.sergiu.booklibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Objects;
@@ -40,6 +41,7 @@ public class PermissionInfo extends BaseEntityInfo implements GrantedAuthority {
                 + super.toString();
     }
 
+    @JsonIgnore
     @Override
     public String getAuthority() {
         return this.name;

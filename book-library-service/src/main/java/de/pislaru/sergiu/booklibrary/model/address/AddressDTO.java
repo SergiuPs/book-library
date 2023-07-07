@@ -1,7 +1,7 @@
 package de.pislaru.sergiu.booklibrary.model.address;
 
 import de.pislaru.sergiu.booklibrary.model.BaseEntityInfo;
-import de.pislaru.sergiu.booklibrary.model.UserInfo;
+import de.pislaru.sergiu.booklibrary.model.UserDTO;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -12,7 +12,7 @@ public class AddressInfo extends BaseEntityInfo {
     private String zip;
     private String street;
     @JsonIgnore
-    private UserInfo userInfo;
+    private UserDTO userDTO;
     private boolean defaultBillingAddress;
     private boolean defaultShippingAddress;
 
@@ -27,8 +27,8 @@ public class AddressInfo extends BaseEntityInfo {
     public void setZip(String zip) {this.zip = zip;}
     public String getStreet() {return street;}
     public void setStreet(String street) {this.street = street;}
-    public UserInfo getUserInfo() {return userInfo;}
-    public void setUserInfo(UserInfo userInfo) {this.userInfo = userInfo;}
+    public UserDTO getUserInfo() {return userDTO;}
+    public void setUserInfo(UserDTO userDTO) {this.userDTO = userDTO;}
     public boolean isDefaultBillingAddress() {return defaultBillingAddress;}
     public void setDefaultBillingAddress(boolean defaultBillingAddress) {this.defaultBillingAddress = defaultBillingAddress;}
     public boolean isDefaultShippingAddress() {return defaultShippingAddress;}
@@ -47,7 +47,7 @@ public class AddressInfo extends BaseEntityInfo {
 
         return  Objects.equals(this.recipient, that.recipient) &&
                 Objects.equals(this.cityInfo, that.cityInfo) &&
-                Objects.equals(this.userInfo, that.userInfo) &&
+                Objects.equals(this.userDTO, that.userDTO) &&
                 Objects.equals(this.zip, that.zip) &&
                 Objects.equals(this.street, that.street) &&
                 this.defaultBillingAddress == that.defaultBillingAddress &&

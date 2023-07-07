@@ -1,5 +1,6 @@
 package de.pislaru.sergiu.booklibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.HashSet;
@@ -51,6 +52,7 @@ public class RoleInfo extends BaseEntityInfo implements GrantedAuthority {
                 + super.toString();
     }
 
+    @JsonIgnore
     @Override
     public String getAuthority() {
         return this.name;
