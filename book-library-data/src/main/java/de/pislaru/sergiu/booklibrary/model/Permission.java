@@ -1,5 +1,7 @@
 package de.pislaru.sergiu.booklibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.Size;
@@ -13,15 +15,11 @@ public class Permission extends BaseEntity {
     private String name;
 
     @ManyToMany(mappedBy = "permissions")
+    @JsonIgnore
     Set<Role> roles;
 
     public Permission() {
     }
-
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
-    public Set<Role> getRoles() {return roles;}
-    public void setRoles(Set<Role> roles) {this.roles = roles;}
 
     @Override
     public boolean equals(Object object) {
@@ -47,4 +45,9 @@ public class Permission extends BaseEntity {
                 + "}"
                 + super.toString();
     }
+
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+    public Set<Role> getRoles() {return roles;}
+    public void setRoles(Set<Role> roles) {this.roles = roles;}
 }

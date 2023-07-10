@@ -1,5 +1,6 @@
 package de.pislaru.sergiu.booklibrary.model.address;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 import de.pislaru.sergiu.booklibrary.model.User;
 
@@ -15,8 +16,8 @@ public class Address extends BaseEntity {
     @JoinColumn(name = "recipient_id", referencedColumnName = "id")
     private Recipient recipient;
 
-    @JoinColumn(name = "city_id")
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = City.class)
+    @JoinColumn(name = "city_id")
     @NotNull
     private City city;
 
@@ -26,8 +27,9 @@ public class Address extends BaseEntity {
     @Size(min = 3, max = 255)
     private String street;
 
-    @JoinColumn(name = "user_id", nullable = false)
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     @NotNull
     private User user;
 
@@ -50,24 +52,6 @@ public class Address extends BaseEntity {
         this.defaultBillingAddress = defaultBillingAddress;
         this.defaultShippingAddress = defaultShippingAddress;
     }
-
-
-    public Recipient getRecipient() {return recipient;}
-    public void setRecipient(Recipient recipient) {this.recipient = recipient;}
-    public City getCity() {
-        return city;
-    }
-    public void setCity(City city) {this.city = city;}
-    public String getZip() {return zip;}
-    public void setZip(String zip) {this.zip = zip;}
-    public String getStreet() {return street;}
-    public void setStreet(String street) {this.street = street;}
-    public User getUser() {return user;}
-    public void setUser(User user) {this.user = user;}
-    public boolean isDefaultBillingAddress() {return defaultBillingAddress;}
-    public void setDefaultBillingAddress(boolean defaultBillingAddress) {this.defaultBillingAddress = defaultBillingAddress;}
-    public boolean isDefaultShippingAddress() {return defaultShippingAddress;}
-    public void setDefaultShippingAddress(boolean defaultShippingAddress) {this.defaultShippingAddress = defaultShippingAddress;}
 
     @Override
     public boolean equals(Object object) {
@@ -107,4 +91,21 @@ public class Address extends BaseEntity {
                 + "}"
                 + super.toString();
     }
+
+    public Recipient getRecipient() {return recipient;}
+    public void setRecipient(Recipient recipient) {this.recipient = recipient;}
+    public City getCity() {
+        return city;
+    }
+    public void setCity(City city) {this.city = city;}
+    public String getZip() {return zip;}
+    public void setZip(String zip) {this.zip = zip;}
+    public String getStreet() {return street;}
+    public void setStreet(String street) {this.street = street;}
+    public User getUser() {return user;}
+    public void setUser(User user) {this.user = user;}
+    public boolean isDefaultBillingAddress() {return defaultBillingAddress;}
+    public void setDefaultBillingAddress(boolean defaultBillingAddress) {this.defaultBillingAddress = defaultBillingAddress;}
+    public boolean isDefaultShippingAddress() {return defaultShippingAddress;}
+    public void setDefaultShippingAddress(boolean defaultShippingAddress) {this.defaultShippingAddress = defaultShippingAddress;}
 }

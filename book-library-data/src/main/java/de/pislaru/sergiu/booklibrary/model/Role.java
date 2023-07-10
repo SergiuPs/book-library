@@ -1,5 +1,7 @@
 package de.pislaru.sergiu.booklibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -21,7 +23,6 @@ public class Role extends BaseEntity {
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
-            CascadeType.MERGE
     }, fetch = FetchType.EAGER)
     @JoinTable(name = "role_permission",
     joinColumns = @JoinColumn(name = "role_id"),
@@ -29,17 +30,11 @@ public class Role extends BaseEntity {
     private Set<Permission> permissions;
 
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     private Set<User> users;
 
     public Role() {
     }
-
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
-    public byte getLevel() {return level;}
-    public void setLevel(byte level) {this.level = level;}
-    public Set<Permission> getPermissions() {return permissions;}
-    public void setPermissions(Set<Permission> permissions) {this.permissions = permissions;}
 
     @Override
     public boolean equals(Object object) {
@@ -69,4 +64,13 @@ public class Role extends BaseEntity {
                 + "}"
                 + super.toString();
     }
+
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+    public byte getLevel() {return level;}
+    public void setLevel(byte level) {this.level = level;}
+    public Set<Permission> getPermissions() {return permissions;}
+    public void setPermissions(Set<Permission> permissions) {this.permissions = permissions;}
+    public Set<User> getUsers() {return users;}
+    public void setUsers(Set<User> users) {this.users = users;}
 }
