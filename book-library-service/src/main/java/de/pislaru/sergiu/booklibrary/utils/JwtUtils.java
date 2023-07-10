@@ -27,10 +27,10 @@ public class JwtUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${book.library.jwtKey}")
+    @Value("${book.library.jwt.jwtKey}")
     private String jwtKey;
 
-    @Value("${book.library.jwtExpiresAfter}")
+    @Value("${book.library.jwt.jwtExpiresAfter}")
     private Long jwtExpiresAfter;
 
     public String generateJwtToken(Authentication auth) {
