@@ -1,5 +1,6 @@
-package de.pislaru.sergiu.booklibrary.model;
+package de.pislaru.sergiu.booklibrary.model.user;
 
+import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 import de.pislaru.sergiu.booklibrary.model.address.Address;
 
 import javax.persistence.*;

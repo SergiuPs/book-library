@@ -1,6 +1,7 @@
-package de.pislaru.sergiu.booklibrary.model;
+package de.pislaru.sergiu.booklibrary.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;

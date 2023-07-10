@@ -1,13 +1,12 @@
-package de.pislaru.sergiu.booklibrary.model;
+package de.pislaru.sergiu.booklibrary.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 

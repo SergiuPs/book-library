@@ -2,7 +2,7 @@ package de.pislaru.sergiu.booklibrary.model.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.pislaru.sergiu.booklibrary.model.BaseEntity;
-import de.pislaru.sergiu.booklibrary.model.User;
+import de.pislaru.sergiu.booklibrary.model.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
