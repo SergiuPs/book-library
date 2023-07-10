@@ -26,6 +26,8 @@ public class User extends BaseEntity {
     @Size(min = 8, max = 255)
     private String password;
 
+    private boolean enabled;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", targetEntity = Address.class, fetch = FetchType.EAGER)
     private Set<Address> addresses = new HashSet<>();
 
@@ -42,14 +44,54 @@ public class User extends BaseEntity {
     public User() {
     }
 
-    public User(String firstName, String lastName, String userName, String email, String password, Set<Address> addresses, Set<Role> roles) {
+    public User(String firstName, String lastName, String userName, String email, String password,
+                boolean enabled, Set<Address> addresses, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.enabled = enabled;
         this.addresses = addresses;
         this.roles = roles;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof User that)) {
+            return false;
+        }
+
+        return  Objects.equals(this.firstName, that.firstName) &&
+                Objects.equals(this.lastName, that.lastName) &&
+                Objects.equals(this.userName, that.userName) &&
+                Objects.equals(this.email, that.email) &&
+                Objects.equals(this.password, that.password) &&
+                this.enabled == that.enabled &&
+                Objects.equals(this.addresses, that.addresses) &&
+                Objects.equals(this.roles, that.roles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), firstName, lastName, userName, email, password, enabled, addresses, roles);
+    }
+
+    @Override
+    public String toString() {
+        return "User {"
+                + "first-name=" + firstName
+                + ", last-name=" + lastName
+                + ", e-mail=" + email
+                + ", user-name=" + userName
+                + ", enabled=" + enabled
+                + ", addresses: " + addresses
+                + " roles: " + roles
+                + "}"
+                + super.toString();
     }
 
     public String getFirstName() {return firstName;}
@@ -62,6 +104,8 @@ public class User extends BaseEntity {
     public void setEmail(String email) {this.email = email;}
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
+    public boolean isEnabled() {return enabled;}
+    public void setEnabled(boolean enabled) {this.enabled = enabled;}
     public Set<Address> getAddresses() {return addresses;}
 
     public void setAddresses(Set<Address> addresses) {
@@ -79,41 +123,4 @@ public class User extends BaseEntity {
     public void addRole(Role role) {roles.add(role);}
     public Set<Role> getRoles() {return roles;}
     public void setRoles(Set<Role> roles) {this.roles = roles;}
-
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null || this.getClass() != object.getClass() || !super.equals(object)) {
-            return false;
-        }
-
-        User user = (User) object;
-
-        return  Objects.equals(firstName, user.firstName) &&
-                Objects.equals(lastName, user.lastName) &&
-                Objects.equals(userName, user.userName) &&
-                Objects.equals(email, user.email) &&
-                addresses.equals(user.addresses) &&
-                roles.equals(user.roles);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), firstName, lastName, userName, email, password, addresses, roles);
-    }
-
-    @Override
-    public String toString() {
-        return "User {"
-                + "first-name=" + firstName
-                + ", last-name=" + lastName
-                + ", e-mail=" + email
-                + ", user-name=" + userName
-                + ", addresses: " + addresses
-                + " roles: " + roles
-                + "}"
-                + super.toString();
-    }
 }
