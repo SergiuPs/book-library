@@ -1,0 +1,12 @@
+<html>
+<head></head>
+<body>
+    <p>Dear ${firstName} ${lastName},</p>
+    <p>you were successfully registered to Spring Library! To activate your account navigate to:</p>
+    <a href="${confirmationLink}">${confirmationLink}</a>
+    <p>You can log yourself with both username and email.
+    <hr>
+    <p>Kind Regards</p>
+    <p>Spring-Library Team</p>
+</body>
+</html>
