@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.dto.address;
+package de.pislaru.sergiu.booklibrary.address;
 
 import java.util.Objects;
 
