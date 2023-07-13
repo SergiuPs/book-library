@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.services;
+package de.pislaru.sergiu.booklibrary.user.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.fge.jsonpatch.JsonPatch;

@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.services;
+package de.pislaru.sergiu.booklibrary.user.service;
 
 import de.pislaru.sergiu.booklibrary.dto.RoleDTO;
 import de.pislaru.sergiu.booklibrary.repositories.RoleRepository;
