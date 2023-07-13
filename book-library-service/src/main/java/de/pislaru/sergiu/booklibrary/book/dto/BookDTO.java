@@ -1,5 +1,8 @@
-package de.pislaru.sergiu.booklibrary.dto.book;
+package de.pislaru.sergiu.booklibrary.book.dto;
 
+import de.pislaru.sergiu.booklibrary.book.author.dto.AuthorDTO;
+import de.pislaru.sergiu.booklibrary.book.genre.dto.GenreDTO;
+import de.pislaru.sergiu.booklibrary.book.publisher.PublisherDTO;
 import de.pislaru.sergiu.booklibrary.model.book.CoverType;
 
 import java.util.HashSet;

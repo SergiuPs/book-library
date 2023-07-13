@@ -1,7 +1,7 @@
-package de.pislaru.sergiu.booklibrary.services;
+package de.pislaru.sergiu.booklibrary.book.genre.service;
 
 import de.pislaru.sergiu.booklibrary.model.book.Genre;
-import de.pislaru.sergiu.booklibrary.dto.book.GenreDTO;
+import de.pislaru.sergiu.booklibrary.book.genre.dto.GenreDTO;
 import de.pislaru.sergiu.booklibrary.repositories.book.GenreRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

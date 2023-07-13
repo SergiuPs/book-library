@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.dto.book;
+package de.pislaru.sergiu.booklibrary.book.publisher;
 
 import de.pislaru.sergiu.booklibrary.model.book.Book;
 

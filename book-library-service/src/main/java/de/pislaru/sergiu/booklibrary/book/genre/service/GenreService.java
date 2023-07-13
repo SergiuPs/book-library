@@ -1,6 +1,6 @@
-package de.pislaru.sergiu.booklibrary.services;
+package de.pislaru.sergiu.booklibrary.book.genre.service;
 
-import de.pislaru.sergiu.booklibrary.dto.book.GenreDTO;
+import de.pislaru.sergiu.booklibrary.book.genre.dto.GenreDTO;
 import java.util.List;
 
 public interface GenreService {

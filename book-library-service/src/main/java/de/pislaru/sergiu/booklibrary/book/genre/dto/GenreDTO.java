@@ -1,4 +1,6 @@
-package de.pislaru.sergiu.booklibrary.dto.book;
+package de.pislaru.sergiu.booklibrary.book.genre.dto;
+
+import de.pislaru.sergiu.booklibrary.book.dto.BookDTO;
 
 import java.util.HashSet;
 import java.util.Objects;
