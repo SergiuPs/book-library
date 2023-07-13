@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.services.email;
+package de.pislaru.sergiu.booklibrary.email;
 
 public final class EmailConstants {
     public final static String BASE_PACKAGE_PATH = "/templates";
