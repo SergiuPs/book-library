@@ -1,11 +1,13 @@
-package de.pislaru.sergiu.booklibrary.dto;
+package de.pislaru.sergiu.booklibrary.user.dto;
 
-import de.pislaru.sergiu.booklibrary.dto.address.AddressDTO;
+import de.pislaru.sergiu.booklibrary.address.AddressDTO;
+
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class UserDTO {
+public class UserDTO implements Serializable {
 
     private Long id;
     private String firstName;

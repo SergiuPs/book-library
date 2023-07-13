@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.dto;
+package de.pislaru.sergiu.booklibrary.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;

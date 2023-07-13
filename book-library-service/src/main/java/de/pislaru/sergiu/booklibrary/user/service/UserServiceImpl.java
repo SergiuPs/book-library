@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatch;
 import com.github.fge.jsonpatch.JsonPatchException;
 import de.pislaru.sergiu.booklibrary.model.user.User;
-import de.pislaru.sergiu.booklibrary.dto.UserDTO;
+import de.pislaru.sergiu.booklibrary.user.dto.UserDTO;
 import de.pislaru.sergiu.booklibrary.repositories.RoleRepository;
 import de.pislaru.sergiu.booklibrary.repositories.UserRepository;
 

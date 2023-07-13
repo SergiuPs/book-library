@@ -3,7 +3,7 @@ package de.pislaru.sergiu.booklibrary.user.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.fge.jsonpatch.JsonPatch;
 import com.github.fge.jsonpatch.JsonPatchException;
-import de.pislaru.sergiu.booklibrary.dto.UserDTO;
+import de.pislaru.sergiu.booklibrary.user.dto.UserDTO;
 import org.springframework.data.domain.Page;
 
 public interface UserService {

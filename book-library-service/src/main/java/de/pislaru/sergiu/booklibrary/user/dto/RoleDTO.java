@@ -1,13 +1,14 @@
-package de.pislaru.sergiu.booklibrary.dto;
+package de.pislaru.sergiu.booklibrary.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class RoleDTO implements GrantedAuthority {
+public class RoleDTO implements GrantedAuthority, Serializable {
 
     private Long id;
     private String name;
