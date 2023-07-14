@@ -1,0 +1,12 @@
+<html>
+<head></head>
+<body>
+    <h3>Your code is ${ securityCode }</h3>
+    <p>It is valid for 10 minutes</p>
+    <br>
+    <p>Hi ${ firstName }, use the above code to let us know it’s really you using your account.</p>
+    <hr>
+    <p>Kind Regards</p>
+    <p>Spring-Library Team</p>
+</body>
+</html>
