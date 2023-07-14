@@ -1,6 +1,6 @@
-package de.pislaru.sergiu.booklibrary.config;
+package de.pislaru.sergiu.booklibrary.email.config;
 
-import de.pislaru.sergiu.booklibrary.constants.EmailConstants;
+import de.pislaru.sergiu.booklibrary.email.EmailConstants;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

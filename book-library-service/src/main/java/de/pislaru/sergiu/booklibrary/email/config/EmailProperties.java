@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.config;
+package de.pislaru.sergiu.booklibrary.email.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
