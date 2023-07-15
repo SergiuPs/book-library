@@ -35,12 +35,12 @@ public class JwtAuthenticationService implements AuthenticationService {
     @Override
     public void setTokenAuthenticatedUserToContext(String userName) {
         SecurityUser user = (SecurityUser) userDetailsService.loadUserByUsername(userName);
-        UsernamePasswordAuthenticationToken authentication =
+        UsernamePasswordAuthenticationToken auth =
                 new UsernamePasswordAuthenticationToken(
                         user,
                         null,
                         user.getAuthorities());
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder.getContext().setAuthentication(auth);
     }
 }
