@@ -7,7 +7,6 @@ import de.pislaru.sergiu.booklibrary.model.user.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 
 @Entity
 public class Address extends BaseEntity {
@@ -27,7 +26,7 @@ public class Address extends BaseEntity {
     @Size(min = 3, max = 255)
     private String street;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     @NotNull
@@ -54,42 +53,16 @@ public class Address extends BaseEntity {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null || this.getClass() != object.getClass() || !super.equals(object)) {
-            return false;
-        }
-
-        Address that = (Address) object;
-
-        return  Objects.equals(this.recipient, that.recipient) &&
-                Objects.equals(this.city, that.city) &&
-                Objects.equals(this.zip, that.zip) &&
-                Objects.equals(this.street, that.street) &&
-                this.defaultShippingAddress == that.defaultShippingAddress &&
-                this.defaultBillingAddress == that.defaultBillingAddress;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), recipient.hashCode(), city.hashCode(),
-                zip, street, defaultBillingAddress, defaultShippingAddress);
-    }
-
-    @Override
     public String toString() {
-        return "Address {"
-                + "recipient=" + recipient.toString()
-                + ", city=" + city.getName()
-                + ", region=" + city.getRegion()
-                + ", zip=" + zip
+        return "Address { "
+                + super.toString()
+                + ", recipient {" + recipient.toString()
+                + "}, city {" + city.toString()
+                + "}, zip=" + zip
                 + ", street" + street
                 + ", default-billing-address" + defaultBillingAddress
                 + ", default-shipping-address" + defaultShippingAddress
-                + "}"
-                + super.toString();
+                + "}";
     }
 
     public Recipient getRecipient() {return recipient;}

@@ -7,7 +7,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 
 @Entity
 public class Recipient extends BaseEntity {
@@ -39,33 +38,12 @@ public class Recipient extends BaseEntity {
     public void setLastName(String lastName) {this.lastName = lastName;}
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null || this.getClass() != object.getClass() || !super.equals(object)) {
-            return false;
-        }
-
-        Recipient that = (Recipient) object;
-
-        return  Objects.equals(this.title, that.title) &&
-                Objects.equals(this.firstName, that.firstName) &&
-                Objects.equals(this.lastName, that.firstName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), title, firstName, lastName);
-    }
-
-    @Override
     public String toString() {
-        return "Recipient {"
-                + "title=" + title.getTitle()
+        return "Recipient { "
+                + super.toString()
+                + ", title=" + title.getTitle()
                 + ", first-name=" + firstName
                 + ", last-name=" + lastName
-                + "}"
-                + super.toString();
+                + "}";
     }
 }

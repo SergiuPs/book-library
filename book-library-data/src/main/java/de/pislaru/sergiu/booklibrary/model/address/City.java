@@ -1,12 +1,12 @@
 package de.pislaru.sergiu.booklibrary.model.address;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -19,7 +19,8 @@ public class City extends BaseEntity {
     @NotNull
     private Region region;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "city", targetEntity = Address.class)
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "city", targetEntity = Address.class, fetch = FetchType.LAZY)
     private Set<Address> addresses = new HashSet<>();
 
     public City() {
@@ -38,31 +39,11 @@ public class City extends BaseEntity {
     public void setAddresses(Set<Address> addresses) {this.addresses = addresses;}
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null || this.getClass() != object.getClass() || !super.equals(object)) {
-            return false;
-        }
-
-        City city = (City) object;
-
-        return Objects.equals(name, city.name) &&
-                Objects.equals(region, city.region);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), name, region);
-    }
-
-    @Override
     public String toString() {
-        return "City {"
-                + "name=" + name
+        return "City { "
+                + super.toString()
+                + ", name=" + name
                 + ", region=" + region.getName()
-                + "}"
-                + super.toString();
+                + "}";
     }
 }
