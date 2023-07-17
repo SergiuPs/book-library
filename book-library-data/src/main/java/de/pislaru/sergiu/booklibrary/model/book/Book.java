@@ -4,7 +4,6 @@ import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -43,6 +42,24 @@ public class Book extends BaseEntity {
     public Book() {
     }
 
+    @Override
+    public String toString() {
+        return "Book { "
+                + super.toString()
+                + ", title=" + title
+                + ", originalTitle=" + originalTitle
+                + ", language=" + language
+                + ", cover=" + coverType
+                + ", numberOfPages=" + numberOfPages
+                + ", ISBN-10=" + ISBN_10
+                + ", ISBN-13=" + ISBN_13
+                + ", publisher=" + publisher
+                + ", description=" + description
+                + " Authors {" + authors
+                + "} Genres {" + genres
+                + "}}";
+    }
+
     public String getTitle() {return title;}
     public void setTitle(String title) {this.title = title;}
     public String getOriginalTitle() {return originalTitle;}
@@ -65,51 +82,4 @@ public class Book extends BaseEntity {
     public void setGenres(Set<Genre> genres) {this.genres = genres;}
     public String getDescription() {return description;}
     public void setDescription(String description) {this.description = description;}
-
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null || this.getClass() != object.getClass() || !super.equals(object)) {
-            return false;
-        }
-
-        Book that = (Book) object;
-
-        return Objects.equals(this.title, that.title) &&
-                Objects.equals(this.originalTitle, that.originalTitle) &&
-                Objects.equals(this.language, that.language) &&
-                Objects.equals(this.coverType, that.coverType) &&
-                Objects.equals(this.numberOfPages, that.numberOfPages) &&
-                Objects.equals(this.ISBN_10, that.ISBN_10) &&
-                Objects.equals(this.ISBN_13, that.ISBN_13) &&
-                this.authors.equals(that.authors) &&
-                Objects.equals(this.publisher, that.publisher) &&
-                this.genres.equals(that.genres) &&
-                Objects.equals(this.description, that.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), title, originalTitle, language, coverType, numberOfPages, ISBN_10, ISBN_13, description, authors, publisher, genres);
-    }
-
-    @Override
-    public String toString() {
-        return "Book {"
-                + "title=" + title
-                + ", originalTitle=" + originalTitle
-                + ", language=" + language
-                + ", cover=" + coverType
-                + ", numberOfPages=" + numberOfPages
-                + ", ISBN-10=" + ISBN_10
-                + ", ISBN-13=" + ISBN_13
-                + ", publisher=" + publisher
-                + ", description=" + description
-                + " Authors {" + authors
-                + "} Genres {" + genres
-                + "}}"
-                + super.toString();
-    }
 }

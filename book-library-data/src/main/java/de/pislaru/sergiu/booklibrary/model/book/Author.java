@@ -4,10 +4,8 @@ import de.pislaru.sergiu.booklibrary.model.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -25,6 +23,19 @@ public class Author extends BaseEntity {
 
     public Author() {
     }
+    @Override
+    public String toString() {
+        return "Author { "
+                + super.toString()
+                + ", firstName=" + firstName
+                + ", lastName=" + lastName
+                + ", birthPlace=" + birthPlace
+                + ", bornOn=" + bornOn
+                + ", diedOn=" + diedOn
+                + ", biography {" + biography
+                + "}}";
+    }
+
 
     public String getFirstName() {return firstName;}
     public void setFirstName(String firstName) {this.firstName = firstName;}
@@ -40,42 +51,4 @@ public class Author extends BaseEntity {
     public void setBiography(String biography) {this.biography = biography;}
     public Set<Book> getBooks() {return books;}
     public void setBooks(Set<Book> books) {this.books = books;}
-
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null || this.getClass() != object.getClass() || !super.equals(object)) {
-            return false;
-        }
-
-        Author that = (Author) object;
-
-        return  Objects.equals(this.firstName, that.firstName) &&
-                Objects.equals(this.lastName, that.lastName) &&
-                Objects.equals(this.birthPlace, that.birthPlace) &&
-                Objects.equals(this.bornOn, that.bornOn) &&
-                Objects.equals(this.diedOn, that.diedOn) &&
-                Objects.equals(this.biography, that.biography) &&
-                books.equals(that.books);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), firstName, lastName, birthPlace, bornOn, diedOn, biography, books);
-    }
-
-    @Override
-    public String toString() {
-        return "Author {"
-                + "firstName=" + firstName
-                + ", lastName=" + lastName
-                + ", birthPlace=" + birthPlace
-                + ", bornOn=" + bornOn
-                + ", diedOn=" + diedOn
-                + ", biography {" + biography
-                + "}}"
-                + super.toString();
-    }
 }
