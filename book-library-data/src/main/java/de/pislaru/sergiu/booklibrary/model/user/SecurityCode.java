@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 public class SecurityCode extends BaseEntity {
@@ -36,33 +35,13 @@ public class SecurityCode extends BaseEntity {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-
-        if (!(object instanceof SecurityCode that) || !super.equals(object)) {
-            return false;
-        }
-
-        return  Objects.equals(this.code, that.code) &&
-                Objects.equals(this.email, that.email) &&
-                Objects.equals(this.expirationDate, that.expirationDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), code, email, expirationDate.hashCode());
-    }
-
-    @Override
     public String toString() {
-        return "SecurityCode {"
-                + "code=" + code
+        return "SecurityCode { "
+                + super.toString()
+                + ", code=" + code
                 + ", email=" + email
                 + ", expiration-date=" + expirationDate
-                + "}"
-                + super.toString();
+                + "}";
     }
 
     public String getCode() {return code;}

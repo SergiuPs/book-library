@@ -40,33 +40,13 @@ public class VerificationToken extends BaseEntity {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-
-        if (!(object instanceof VerificationToken that) || !super.equals(object)) {
-            return false;
-        }
-
-        return  Objects.equals(this.token, that.token) &&
-                Objects.equals(this.user, that.user) &&
-                Objects.equals(this.expirationDate, that.expirationDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), token, user.hashCode(), expirationDate.hashCode());
-    }
-
-    @Override
     public String toString() {
-        return "VerificationToken {"
-                + "token=" + token
+        return "VerificationToken { "
+                + super.toString()
+                + ", token=" + token
                 + ", expiration-date=" + expirationDate
                 + ", user {" + user
-                + "}}"
-                + super.toString();
+                + "}}";
     }
 
     public String getToken() {return token;}

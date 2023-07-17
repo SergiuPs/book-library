@@ -23,28 +23,11 @@ public class Permission extends BaseEntity {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null || this.getClass() != object .getClass() || !super.equals(object)) {
-            return false;
-        }
-
-        Permission that = (Permission) object;
-
-        return Objects.equals(this.name, that.name);
-    }
-
-    @Override
-    public int hashCode() {return Objects.hash(super.hashCode(), name);}
-
-    @Override
     public String toString() {
-        return "Permission {"
-                + "name=" + name
-                + "}"
-                + super.toString();
+        return "Permission { "
+                + super.toString()
+                + ", name=" + name
+                + "}";
     }
 
     public String getName() {return name;}

@@ -5,11 +5,11 @@ import de.pislaru.sergiu.booklibrary.model.address.Address;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
+
 public class User extends BaseEntity {
 
     @Size(min = 2, max = 100)
@@ -33,13 +33,12 @@ public class User extends BaseEntity {
     private Set<Address> addresses = new HashSet<>();
 
     @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
+            CascadeType.PERSIST
     }, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @NotEmpty
+    //@NotEmpty
     private Set<Role> roles = new HashSet<>();
 
     public User() {
@@ -58,41 +57,17 @@ public class User extends BaseEntity {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (!(object instanceof User that)) {
-            return false;
-        }
-
-        return  Objects.equals(this.firstName, that.firstName) &&
-                Objects.equals(this.lastName, that.lastName) &&
-                Objects.equals(this.userName, that.userName) &&
-                Objects.equals(this.email, that.email) &&
-                Objects.equals(this.password, that.password) &&
-                this.enabled == that.enabled &&
-                Objects.equals(this.addresses, that.addresses) &&
-                Objects.equals(this.roles, that.roles);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), firstName, lastName, userName, email, password, enabled, addresses, roles);
-    }
-
-    @Override
     public String toString() {
-        return "User {"
-                + "first-name=" + firstName
+        return "User { "
+                + super.toString()
+                + ", first-name=" + firstName
                 + ", last-name=" + lastName
                 + ", e-mail=" + email
                 + ", user-name=" + userName
                 + ", enabled=" + enabled
-                + ", addresses: " + addresses
-                + " roles: " + roles
-                + "}"
-                + super.toString();
+                + "\n, addresses: " + addresses
+                + "\n, roles: " + roles
+                + "}";
     }
 
     public String getFirstName() {return firstName;}

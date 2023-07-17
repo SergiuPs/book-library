@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -36,32 +35,13 @@ public class Role extends BaseEntity {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null || this.getClass() != object .getClass() || !super.equals(object)) {
-            return false;
-        }
-
-        Role that = (Role) object;
-
-        return  Objects.equals(this.name, that.name) &&
-                Objects.equals(this.level, that.level) &&
-                this.permissions.equals(that.permissions);
-    }
-
-    @Override
-    public int hashCode() {return Objects.hash(super.hashCode(), name, level, permissions.hashCode());}
-
-    @Override
     public String toString() {
-        return "Role {"
-                + "name=" + name
+        return "Role { "
+                + super.toString()
+                + ", name=" + name
                 + ", level=" + level
                 + ", permissions=" + permissions.toString()
-                + "}"
-                + super.toString();
+                + "}";
     }
 
     public String getName() {return name;}
