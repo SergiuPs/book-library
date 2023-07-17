@@ -3,7 +3,6 @@ package de.pislaru.sergiu.booklibrary.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
@@ -45,23 +44,16 @@ public abstract class BaseEntity implements Serializable {
         if (this == object) {
             return true;
         }
-        if (object == null || object.getClass() != this.getClass()) {
+        if (!(object instanceof BaseEntity that)) {
             return false;
         }
 
-        BaseEntity baseEntity = (BaseEntity) object;
-
-        return Objects.equals(id, baseEntity.getId()) &&
-                Objects.equals(version, baseEntity.version) &&
-                Objects.equals(createdBy, baseEntity.createdBy) &&
-                Objects.equals(createdAt, baseEntity.createdAt) &&
-                Objects.equals(updatedBy, baseEntity.updatedBy) &&
-                Objects.equals(updatedAt, baseEntity.updatedAt);
+        return this.id != null && this.id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, version, createdBy, createdAt, updatedBy, updatedAt);
+        return getClass().hashCode();
     }
 
     @Override
