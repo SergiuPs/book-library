@@ -5,9 +5,9 @@ public enum RecipientTitle {
     MR("Mr."),
     MS("Mrs./Ms");
 
-    private final String title;
+    private final String value;
 
-    RecipientTitle(String title) {this.title = title;}
+    RecipientTitle(String value) {this.value = value;}
 
-    public String getTitle() {return title;}
+    public String getValue() {return value;}
 }

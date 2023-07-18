@@ -41,7 +41,7 @@ public class Recipient extends BaseEntity {
     public String toString() {
         return "Recipient { "
                 + super.toString()
-                + ", title=" + title.getTitle()
+                + ", title=" + title.getValue()
                 + ", first-name=" + firstName
                 + ", last-name=" + lastName
                 + "}";
