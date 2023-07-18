@@ -1,7 +1,5 @@
 package de.pislaru.sergiu.booklibrary.aspects;
 
-import de.pislaru.sergiu.booklibrary.commands.BaseEntityCommand;
-import de.pislaru.sergiu.booklibrary.security.AuthenticationService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,19 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class CreatedByAspect {
 
-    private final AuthenticationService authenticationService;
-
-    public CreatedByAspect(AuthenticationService authenticationService) {
-        this.authenticationService = authenticationService;
-    }
-
     @Around("@annotation(CreatedBy)")
     public String setCreatedBy(ProceedingJoinPoint proceedingJoinPoint) {
 
         for (Object ob : proceedingJoinPoint.getArgs()) {
-            if (ob instanceof BaseEntityCommand base) {
-                base.setCreatedBy(authenticationService.getLoggedInUser().user().getId());
-            }
+           /* if (ob instanceof BaseEntityCommand base) {
+                base.setCreatedBy(SecurityUserHolder.getIdOfLoggedInUser());
+            }*/
         }
 
         try {
