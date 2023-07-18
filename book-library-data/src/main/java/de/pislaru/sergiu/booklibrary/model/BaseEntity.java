@@ -1,10 +1,17 @@
 package de.pislaru.sergiu.booklibrary.model;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity implements Serializable {
 
     @Id
@@ -15,29 +22,16 @@ public abstract class BaseEntity implements Serializable {
     @Column(name = "opt_lock", columnDefinition = "integer DEFAULT 0", nullable = false)
     private Long version = 0L;
 
-    private Long createdBy;
-    private Long updatedBy;
+    @CreatedDate
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
+    @CreatedBy
+    @Column(updatable = false, nullable = false)
+    private Long createdBy;
+    @LastModifiedDate
     private LocalDateTime updatedAt;
-
-    @PrePersist
-    public void setCreationDate() {this.createdAt = LocalDateTime.now();}
-
-    @PreUpdate
-    public void setChangeDate() {this.updatedAt = LocalDateTime.now();}
-
-    public Long getId() {return id;}
-    public void setId(Long id) {this.id = id;}
-    public Long getVersion() {return version;}
-    public void setVersion(Long version) {this.version = version;}
-    public Long getCreatedBy() {return createdBy;}
-    public void setCreatedBy(Long createdBy) {this.createdBy = createdBy;}
-    public Long getUpdatedBy() {return updatedBy;}
-    public void setUpdatedBy(Long updatedBy) {this.updatedBy = updatedBy;}
-    public LocalDateTime getCreatedAt() {return createdAt;}
-    public void setCreatedAt(LocalDateTime createdAt) {this.createdAt = createdAt;}
-    public LocalDateTime getUpdatedAt() {return updatedAt;}
-    public void setUpdatedAt(LocalDateTime updatedAt) {this.updatedAt = updatedAt;}
+    @LastModifiedBy
+    private Long updatedBy;
 
     @Override
     public boolean equals(Object object) {
@@ -58,13 +52,16 @@ public abstract class BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Base Entity { "
-                + "id=" + id
+        return  "id=" + id
                 + ", version=" + version
                 + ", created-by=" + createdBy
                 + ", created-at=" + createdAt
                 + ", updated-by=" + updatedBy
-                + ", updated-at=" + updatedAt
-                + "}";
+                + ", updated-at=" + updatedAt;
     }
+
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
+    public Long getVersion() {return version;}
+    public void setVersion(Long version) {this.version = version;}
 }
