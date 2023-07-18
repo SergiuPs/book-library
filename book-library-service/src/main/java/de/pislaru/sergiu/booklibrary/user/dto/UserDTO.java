@@ -10,6 +10,7 @@ import java.util.Set;
 public class UserDTO implements Serializable {
 
     private Long id;
+    private Long version;
     private String firstName;
     private String lastName;
     private String email;
@@ -40,6 +41,7 @@ public class UserDTO implements Serializable {
         }
 
         return  Objects.equals(this.id, that.id) &&
+                Objects.equals(this.version, that.version) &&
                 Objects.equals(this.firstName, that.firstName) &&
                 Objects.equals(this.lastName, that.lastName) &&
                 Objects.equals(this.userName, that.userName) &&
@@ -50,13 +52,14 @@ public class UserDTO implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, userName, email, password, addresses.hashCode(), roles.hashCode());
+        return Objects.hash(id, version, firstName, lastName, userName, email, password, addresses.hashCode(), roles.hashCode());
     }
 
     @Override
     public String toString() {
         return "UserDTO {"
                 + "id" + id
+                + ", version=" + version
                 + ", first-name=" + firstName
                 + ", last-name=" + lastName
                 + ", e-mail=" + email
@@ -68,6 +71,8 @@ public class UserDTO implements Serializable {
 
     public Long getId() {return id;}
     public void setId(Long id) {this.id = id;}
+    public Long getVersion() {return version;}
+    public void setVersion(Long version) {this.version = version;}
     public String getFirstName() {return firstName;}
     public void setFirstName(String firstName) {this.firstName = firstName;}
     public String getLastName() {return lastName;}

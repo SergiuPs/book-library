@@ -11,6 +11,7 @@ import java.util.Set;
 public class RoleDTO implements GrantedAuthority, Serializable {
 
     private Long id;
+    private Long version;
     private String name;
     private byte level;
     private Set<PermissionDTO> permissions = new HashSet<>();
@@ -28,18 +29,20 @@ public class RoleDTO implements GrantedAuthority, Serializable {
         }
 
         return  Objects.equals(this.id, that.id) &&
+                Objects.equals(this.version, that.version) &&
                 Objects.equals(this.name, that.name) &&
                 Objects.equals(this.level, that.level) &&
                 Objects.equals(this.permissions, that.permissions);
     }
 
     @Override
-    public int hashCode() {return Objects.hash(id, name, level, permissions.hashCode());}
+    public int hashCode() {return Objects.hash(id, version, name, level, permissions.hashCode());}
 
     @Override
     public String toString() {
         return "RoleDTO {"
                 + "id=" + id
+                + ", version=" + version
                 + ", name=" + name
                 + ", level=" + level
                 + ", permissionInfos=" + permissions.toString()
@@ -54,6 +57,8 @@ public class RoleDTO implements GrantedAuthority, Serializable {
 
     public Long getId() {return id;}
     public void setId(Long id) {this.id = id;}
+    public Long getVersion() {return version;}
+    public void setVersion(Long version) {this.version = version;}
     public String getName() {return name;}
     public void setName(String name) {this.name = name;}
     public byte getLevel() {return level;}
