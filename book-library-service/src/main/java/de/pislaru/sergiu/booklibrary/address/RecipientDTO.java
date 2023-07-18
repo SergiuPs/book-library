@@ -7,6 +7,7 @@ import java.util.Objects;
 public class RecipientDTO {
 
     private Long id;
+    private Long version;
     private RecipientTitle title;
     private String firstName;
     private String lastName;
@@ -24,6 +25,7 @@ public class RecipientDTO {
         }
 
         return  Objects.equals(this.id, that.id) &&
+                Objects.equals(this.version, that.version) &&
                 Objects.equals(this.title, that.title) &&
                 Objects.equals(this.firstName, that.firstName) &&
                 Objects.equals(this.lastName, that.lastName);
@@ -31,14 +33,15 @@ public class RecipientDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, firstName, lastName);
+        return Objects.hash(id, version, title, firstName, lastName);
     }
 
     @Override
     public String toString() {
         return "RecipientDTO {"
                 + "id=" + id
-                + ", title=" + title.getTitle()
+                + ", version=" + version
+                + ", title=" + title.getValue()
                 + ", first-name=" + firstName
                 + ", last-name=" + lastName
                 + "}";
@@ -46,6 +49,8 @@ public class RecipientDTO {
 
     public Long getId() {return id;}
     public void setId(Long id) {this.id = id;}
+    public Long getVersion() {return version;}
+    public void setVersion(Long version) {this.version = version;}
     public RecipientTitle getTitle() {return title;}
     public void setTitle(RecipientTitle title) {this.title = title;}
     public String getFirstName() {return firstName;}
