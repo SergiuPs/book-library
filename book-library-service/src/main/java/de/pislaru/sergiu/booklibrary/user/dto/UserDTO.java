@@ -3,9 +3,10 @@ package de.pislaru.sergiu.booklibrary.user.dto;
 import de.pislaru.sergiu.booklibrary.address.AddressDTO;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+
 
 public class UserDTO implements Serializable {
 
@@ -16,13 +17,13 @@ public class UserDTO implements Serializable {
     private String email;
     private String userName;
     private String password;
-    private Set<RoleDTO> roles = new HashSet<>();
-    private Set<AddressDTO> addresses = new HashSet<>();
+    private List<RoleDTO> roles = new ArrayList<>();
+    private List<AddressDTO> addresses = new ArrayList<>();
 
     public UserDTO() {
     }
 
-    public UserDTO(String firstName, String lastName, String userName, String email, String password, Set<RoleDTO> roles, Set<AddressDTO> addresses) {
+    public UserDTO(String firstName, String lastName, String userName, String email, String password, List<RoleDTO> roles, List<AddressDTO> addresses) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -83,8 +84,8 @@ public class UserDTO implements Serializable {
     public void setUserName(String userName) {this.userName = userName;}
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
-    public Set<RoleDTO> getRoles() {return roles;}
-    public void setRoles(Set<RoleDTO> roles) {this.roles = roles;}
-    public Set<AddressDTO> getAddresses() {return addresses;}
-    public void setAddresses(Set<AddressDTO> addresses) {this.addresses = addresses;}
+    public List<RoleDTO> getRoles() {return roles;}
+    public void setRoles(List<RoleDTO> roles) {this.roles = roles;}
+    public List<AddressDTO> getAddresses() {return addresses;}
+    public void setAddresses(List<AddressDTO> addresses) {this.addresses = addresses;}
 }

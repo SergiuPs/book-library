@@ -4,9 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+
 
 public class RoleDTO implements GrantedAuthority, Serializable {
 
@@ -14,7 +15,7 @@ public class RoleDTO implements GrantedAuthority, Serializable {
     private Long version;
     private String name;
     private byte level;
-    private Set<PermissionDTO> permissions = new HashSet<>();
+    private List<PermissionDTO> permissions = new ArrayList<>();
 
     public RoleDTO() {
     }
@@ -63,6 +64,6 @@ public class RoleDTO implements GrantedAuthority, Serializable {
     public void setName(String name) {this.name = name;}
     public byte getLevel() {return level;}
     public void setLevel(byte level) {this.level = level;}
-    public Set<PermissionDTO> getPermissions() {return permissions;}
-    public void setPermissions(Set<PermissionDTO> permissions) {this.permissions = permissions;}
+    public List<PermissionDTO> getPermissions() {return permissions;}
+    public void setPermissions(List<PermissionDTO> permissions) {this.permissions = permissions;}
 }
