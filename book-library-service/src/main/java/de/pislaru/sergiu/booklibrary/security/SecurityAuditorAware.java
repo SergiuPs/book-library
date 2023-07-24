@@ -9,6 +9,6 @@ import java.util.Optional;
 public class SecurityAuditorAware implements AuditorAware<Long> {
     @Override
     public Optional<Long> getCurrentAuditor() {
-        return  Optional.ofNullable(SecurityUserHolder.getIdOfLoggedInUser());
+        return  SecurityUserHolder.getIdOfLoggedInUser();
     }
 }
