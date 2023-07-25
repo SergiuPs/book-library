@@ -38,16 +38,10 @@ public class SecurityCodeRequestedListener implements ApplicationListener<OnSecu
         templateModel.put("securityCode", securityCode);
         templateModel.put("firstName", user.getFirstName());
 
-        EmailContent emailContent;
-        try {
-            Template template = emailService.getTemplateFromString(EmailConstants.EMAIL_SECURITY_CODE_TEMPLATE);
-            emailContent = new EmailContent(template, templateModel);
-        } catch (IOException | TemplateException e) {
-            logger.error("Loading template failed: {}", e.getMessage());
-            emailContent = new EmailContent(securityCode);
-        }
+        EmailContent emailContent = emailService.createEmailContent(EmailConstants.EMAIL_SECURITY_CODE_TEMPLATE,
+                                                                                    templateModel, securityCode);
 
-        Email email = new Email(user.getEmail(),
+        Email email = new Email("sergiu.pislaru@web.de",
                 EmailSender.NO_REPLY,
                 EmailSubject.SECURITY_CODE,
                 emailContent);

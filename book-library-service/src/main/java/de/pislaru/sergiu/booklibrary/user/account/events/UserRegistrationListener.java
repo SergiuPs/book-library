@@ -40,16 +40,10 @@ public class UserRegistrationListener implements ApplicationListener<OnUserRegis
         templateModel.put("lastName", user.getLastName());
         templateModel.put("confirmationLink", confirmationUrl);
 
-        EmailContent emailContent;
-        try {
-            Template template = emailService.getTemplateFromString(EmailConstants.EMAIL_CONFIRMATION_LINK_TEMPLATE);
-            emailContent = new EmailContent(template, templateModel);
-        } catch (IOException | TemplateException e) {
-            logger.error("Loading template failed: {}", e.getMessage());
-            emailContent = new EmailContent(confirmationUrl);
-        }
+        EmailContent emailContent = emailService.createEmailContent(EmailConstants.EMAIL_CONFIRMATION_LINK_TEMPLATE,
+                                                                                    templateModel, confirmationUrl);
 
-        Email email = new Email(user.getEmail(),
+        Email email = new Email("sergiu.pislaru@web.de",
                 EmailSender.NO_REPLY,
                 EmailSubject.REGISTRATION_CONFIRMATION,
                 emailContent);
