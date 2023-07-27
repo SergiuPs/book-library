@@ -11,11 +11,11 @@ public final class SecurityUserHolder {
     private SecurityUserHolder() {
     };
 
-    public static Optional<Long> getIdOfLoggedInUser() {
-        return getLoggedInUser().map(SecurityUser::id);
+    public static Optional<Long> idOfLoggedInUser() {
+        return loggedInUser().map(SecurityUser::id);
     }
 
-    private static Optional<SecurityUser> getLoggedInUser() {
+    private static Optional<SecurityUser> loggedInUser() {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof SecurityUser) {
             return Optional.of((SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         }
