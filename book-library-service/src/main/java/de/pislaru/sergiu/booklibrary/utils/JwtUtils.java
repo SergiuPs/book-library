@@ -9,6 +9,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
@@ -37,9 +38,15 @@ public class JwtUtils {
         Date now = new Date();
         Date expirationDate = new Date(now.getTime() + jwtExpiresAfter);
 
+        Long userId;
+        if (SecurityUserHolder.idOfLoggedInUser().isPresent()) {
+            userId = SecurityUserHolder.idOfLoggedInUser().get();
+        } else {
+            throw new InsufficientAuthenticationException("Logged in user was not set to context.");
+        }
         return  Jwts.builder().setIssuer("Library-App")
                 .setSubject(auth.getName())
-                .claim("userId", SecurityUserHolder.getIdOfLoggedInUser())
+                .claim("userId", userId)
                 .claim("authorities", populateAuthorities(auth.getAuthorities()))
                 .setIssuedAt(now)
                 .setExpiration(expirationDate)
