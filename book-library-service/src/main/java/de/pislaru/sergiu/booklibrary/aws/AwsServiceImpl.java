@@ -1,7 +1,10 @@
 package de.pislaru.sergiu.booklibrary.aws;
 
 import com.amazonaws.HttpMethod;
+import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +13,7 @@ import java.util.Date;
 @Service
 public class AwsServiceImpl implements AwsService {
 
-    @Value("${book.library.aws.s3-bucket-name}")
-    private String s3BucketName;
+    private static final Logger logger = LoggerFactory.getLogger(AwsServiceImpl.class);
 
     @Value("${book.library.aws.presigned-url-expires-after-ms}")
     private Long presignedUrlExpiresAfterMs;
@@ -23,10 +25,18 @@ public class AwsServiceImpl implements AwsService {
     }
 
     @Override
-    public String generatePresignedUrl(String fileName) {
+    public String generatePresignedUrl(AwsBucket awsBucket, String fileName) {
         Date now = new Date();
         Date expirationDate = new Date(now.getTime() + presignedUrlExpiresAfterMs);
 
-        return s3Service.generatePresignedUrl(s3BucketName, fileName, expirationDate, HttpMethod.PUT).toString();
+        String presignedUrl;
+        try {
+            presignedUrl = s3Service.generatePresignedUrl(awsBucket.getBucketName(), fileName, expirationDate, HttpMethod.PUT).toString();
+        } catch (SdkClientException e) {
+            logger.error("JWT token is expired: {}", e.getMessage());
+            throw new AwsException("Presigned URL could not be generated");
+        }
+
+        return presignedUrl;
     }
 }
