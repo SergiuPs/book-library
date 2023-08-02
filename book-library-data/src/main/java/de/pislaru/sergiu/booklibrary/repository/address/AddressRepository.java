@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.repositories.address;
+package de.pislaru.sergiu.booklibrary.repository.address;
 
 import de.pislaru.sergiu.booklibrary.domain.entity.address.Address;
 import org.springframework.data.repository.CrudRepository;

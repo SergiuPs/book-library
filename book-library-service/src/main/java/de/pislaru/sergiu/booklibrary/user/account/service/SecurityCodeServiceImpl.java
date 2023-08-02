@@ -1,7 +1,7 @@
 package de.pislaru.sergiu.booklibrary.user.account.service;
 
-import de.pislaru.sergiu.booklibrary.model.user.SecurityCode;
-import de.pislaru.sergiu.booklibrary.repositories.SecurityCodeRepository;
+import de.pislaru.sergiu.booklibrary.domain.entity.user.SecurityCode;
+import de.pislaru.sergiu.booklibrary.repository.user.SecurityCodeRepository;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;

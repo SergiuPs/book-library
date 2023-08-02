@@ -1,7 +1,7 @@
-package de.pislaru.sergiu.booklibrary.repositories.user;
+package de.pislaru.sergiu.booklibrary.repository.user;
 
 import de.pislaru.sergiu.booklibrary.domain.entity.user.User;
-import de.pislaru.sergiu.booklibrary.repositories.user.projections.PersonalDetailsRepository;
+import de.pislaru.sergiu.booklibrary.repository.user.projection.PersonalDetailsRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
