@@ -17,8 +17,8 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long>, 
     @Override
     Page<User> findAll(Pageable pageable);
     Optional<User> findByEmail(String email);
-    Optional<User> findByUserName(String userName);
-    @Query("SELECT p FROM User p WHERE CONCAT(p.firstName, ' ', p.lastName, ' ', p.email, ' ', p.userName) LIKE %?1%")
+    Optional<User> findByUsername(String username);
+    @Query("SELECT p FROM User p WHERE CONCAT(p.firstName, ' ', p.lastName, ' ', p.email, ' ', p.username) LIKE %?1%")
     Page<User> search(String keyword, Pageable pageable);
     @Modifying
     @Query("update User u set u.password = :password where u.id = :id")

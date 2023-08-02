@@ -14,7 +14,7 @@ import java.util.*;
 public class User extends BaseEntity {
 
     @Size(min = 3, max = 50)
-    private String userName;
+    private String username;
 
     @Email
     private String email;
@@ -52,11 +52,11 @@ public class User extends BaseEntity {
     public User() {
     }
 
-    public User(String firstName, String lastName, String userName, String email, LocalDate birth_date, String avatar,
+    public User(String firstName, String lastName, String username, String email, LocalDate birth_date, String avatar,
                 String password, boolean enabled, Set<Address> addresses, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.birthDate = birth_date;
         this.avatar = avatar;
@@ -75,15 +75,15 @@ public class User extends BaseEntity {
                 + ", e-mail=" + email
                 + ", birt-date=" + birthDate
                 + ", avatar=" + avatar
-                + ", user-name=" + userName
+                + ", username=" + username
                 + ", enabled=" + enabled
                 + "\n addresses: " + addresses
                 + "\n roles: " + roles
                 + "}";
     }
 
-    public String getUserName() {return userName;}
-    public void setUserName(String userName) {this.userName = userName;}
+    public String getUsername() {return username;}
+    public void setUsername(String username) {this.username = username;}
     public String getEmail() {return email;}
     public void setEmail(String email) {this.email = email;}
     public String getFirstName() {return firstName;}
