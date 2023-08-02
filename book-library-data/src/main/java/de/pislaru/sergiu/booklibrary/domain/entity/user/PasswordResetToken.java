@@ -1,6 +1,6 @@
-package de.pislaru.sergiu.booklibrary.model.user;
+package de.pislaru.sergiu.booklibrary.domain.user;
 
-import de.pislaru.sergiu.booklibrary.model.BaseEntity;
+import de.pislaru.sergiu.booklibrary.domain.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,12 +9,11 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
-public class VerificationToken extends BaseEntity {
+public class PasswordResetToken extends BaseEntity {
 
-    private static final int EXPIRATION = 60 * 24;
+    private static final int EXPIRATION = 60 * 3;
 
     @NotBlank
     private String token;
@@ -26,12 +25,13 @@ public class VerificationToken extends BaseEntity {
     @NotNull
     private LocalDateTime expirationDate;
 
-    public VerificationToken() {
+    public PasswordResetToken() {
+
     }
 
-    public VerificationToken(String token, User user) {
-        this.token = token;
+    public PasswordResetToken(final User user, final String token) {
         this.user = user;
+        this.token = token;
         this.expirationDate = calculateExpirationDate();
     }
 
@@ -41,7 +41,7 @@ public class VerificationToken extends BaseEntity {
 
     @Override
     public String toString() {
-        return "VerificationToken { "
+        return "PasswordResetToken { "
                 + super.toString()
                 + ", token=" + token
                 + ", expiration-date=" + expirationDate

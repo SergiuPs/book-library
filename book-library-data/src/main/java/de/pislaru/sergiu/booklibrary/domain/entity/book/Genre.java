@@ -1,12 +1,11 @@
-package de.pislaru.sergiu.booklibrary.model.book;
+package de.pislaru.sergiu.booklibrary.domain.book;
 
-import de.pislaru.sergiu.booklibrary.model.BaseEntity;
+import de.pislaru.sergiu.booklibrary.domain.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity

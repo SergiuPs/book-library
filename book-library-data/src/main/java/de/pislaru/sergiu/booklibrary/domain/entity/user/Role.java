@@ -1,7 +1,7 @@
-package de.pislaru.sergiu.booklibrary.model.user;
+package de.pislaru.sergiu.booklibrary.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import de.pislaru.sergiu.booklibrary.model.BaseEntity;
+import de.pislaru.sergiu.booklibrary.domain.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;

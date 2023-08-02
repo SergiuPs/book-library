@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.model.book;
+package de.pislaru.sergiu.booklibrary.domain.book;
 
 public enum CoverType {
     HARDCOVER,

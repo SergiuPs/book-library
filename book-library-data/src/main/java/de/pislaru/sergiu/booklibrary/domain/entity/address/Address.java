@@ -1,8 +1,8 @@
-package de.pislaru.sergiu.booklibrary.model.address;
+package de.pislaru.sergiu.booklibrary.domain.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import de.pislaru.sergiu.booklibrary.model.BaseEntity;
-import de.pislaru.sergiu.booklibrary.model.user.User;
+import de.pislaru.sergiu.booklibrary.domain.BaseEntity;
+import de.pislaru.sergiu.booklibrary.domain.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,10 +12,10 @@ import javax.validation.constraints.Size;
 public class Address extends BaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "recipient_id", referencedColumnName = "id")
+    @JoinColumn(name = "recipient_id")
     private Recipient recipient;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = City.class)
+    @ManyToOne(cascade = CascadeType.MERGE, targetEntity = City.class)
     @JoinColumn(name = "city_id")
     @NotNull
     private City city;
@@ -26,7 +26,7 @@ public class Address extends BaseEntity {
     @Size(min = 3, max = 255)
     private String street;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     @NotNull
@@ -60,6 +60,7 @@ public class Address extends BaseEntity {
                 + "}, city {" + city.toString()
                 + "}, zip=" + zip
                 + ", street" + street
+                + ", user" + user.getId()
                 + ", default-billing-address" + defaultBillingAddress
                 + ", default-shipping-address" + defaultShippingAddress
                 + "}";

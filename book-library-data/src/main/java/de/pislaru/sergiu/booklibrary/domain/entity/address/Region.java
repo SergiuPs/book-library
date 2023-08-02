@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.model.address;
+package de.pislaru.sergiu.booklibrary.domain.address;
 
 public enum Region {
 
