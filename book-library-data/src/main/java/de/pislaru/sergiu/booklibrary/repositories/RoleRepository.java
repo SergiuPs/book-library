@@ -1,10 +1,12 @@
 package de.pislaru.sergiu.booklibrary.repositories;
 
-import de.pislaru.sergiu.booklibrary.model.Role;
+import de.pislaru.sergiu.booklibrary.model.user.Role;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface RoleRepository extends CrudRepository<Role, Long> {
-    public Role getFirstByName(String name);
+    Optional<Role> findByName(String name);
 }
