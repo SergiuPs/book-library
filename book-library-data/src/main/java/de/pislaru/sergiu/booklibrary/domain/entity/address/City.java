@@ -1,7 +1,7 @@
-package de.pislaru.sergiu.booklibrary.domain.address;
+package de.pislaru.sergiu.booklibrary.domain.entity.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import de.pislaru.sergiu.booklibrary.domain.BaseEntity;
+import de.pislaru.sergiu.booklibrary.domain.entity.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.domain;
+package de.pislaru.sergiu.booklibrary.domain.entity;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;

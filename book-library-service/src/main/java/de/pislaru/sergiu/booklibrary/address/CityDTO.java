@@ -1,6 +1,6 @@
 package de.pislaru.sergiu.booklibrary.address;
 
-import de.pislaru.sergiu.booklibrary.model.address.Region;
+import de.pislaru.sergiu.booklibrary.domain.entity.address.Region;
 
 import java.util.Objects;
 

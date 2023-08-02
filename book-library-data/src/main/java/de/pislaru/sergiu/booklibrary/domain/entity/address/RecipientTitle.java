@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.domain.address;
+package de.pislaru.sergiu.booklibrary.domain.entity.address;
 
 public enum RecipientTitle {
 

@@ -1,7 +1,7 @@
-package de.pislaru.sergiu.booklibrary.domain.user;
+package de.pislaru.sergiu.booklibrary.domain.entity.user;
 
-import de.pislaru.sergiu.booklibrary.domain.BaseEntity;
-import de.pislaru.sergiu.booklibrary.domain.address.Address;
+import de.pislaru.sergiu.booklibrary.domain.entity.BaseEntity;
+import de.pislaru.sergiu.booklibrary.domain.entity.address.Address;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

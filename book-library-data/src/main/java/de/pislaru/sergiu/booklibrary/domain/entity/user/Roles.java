@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.domain.user;
+package de.pislaru.sergiu.booklibrary.domain.entity.user;
 
 public enum Roles {
 

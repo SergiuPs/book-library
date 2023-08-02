@@ -1,6 +1,6 @@
-package de.pislaru.sergiu.booklibrary.domain.address;
+package de.pislaru.sergiu.booklibrary.domain.entity.address;
 
-import de.pislaru.sergiu.booklibrary.domain.BaseEntity;
+import de.pislaru.sergiu.booklibrary.domain.entity.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

@@ -1,6 +1,6 @@
 package de.pislaru.sergiu.booklibrary.address;
 
-import de.pislaru.sergiu.booklibrary.model.address.RecipientTitle;
+import de.pislaru.sergiu.booklibrary.domain.entity.address.RecipientTitle;
 
 import java.util.Objects;
 
