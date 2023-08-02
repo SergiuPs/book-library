@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.repositories;
+package de.pislaru.sergiu.booklibrary.repositories.user;
 
 import de.pislaru.sergiu.booklibrary.model.user.Role;
 import org.springframework.data.repository.CrudRepository;
