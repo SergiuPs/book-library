@@ -1,6 +1,6 @@
 package de.pislaru.sergiu.booklibrary.repositories.user;
 
-import de.pislaru.sergiu.booklibrary.model.user.SecurityCode;
+import de.pislaru.sergiu.booklibrary.domain.entity.user.SecurityCode;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
