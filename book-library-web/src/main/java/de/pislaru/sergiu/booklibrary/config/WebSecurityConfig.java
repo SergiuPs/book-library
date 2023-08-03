@@ -1,12 +1,10 @@
 package de.pislaru.sergiu.booklibrary.config;
 
-import de.pislaru.sergiu.booklibrary.filters.JWTTokenValidatorFilter;
-import de.pislaru.sergiu.booklibrary.security.AuthenticationService;
-import de.pislaru.sergiu.booklibrary.utils.JwtUtils;
+import de.pislaru.sergiu.booklibrary.filters.TokenValidatorFilter;
 
+import de.pislaru.sergiu.booklibrary.security.service.TokenAuthenticationService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -21,11 +19,9 @@ import java.util.Collections;
 @EnableMethodSecurity
 public class WebSecurityConfig {
 
-    private final JwtUtils jwtUtils;
-    private final AuthenticationService authenticationService;
+    private final TokenAuthenticationService authenticationService;
 
-    public WebSecurityConfig(JwtUtils jwtUtils, AuthenticationService authenticationService) {
-        this.jwtUtils = jwtUtils;
+    public WebSecurityConfig(TokenAuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 
@@ -44,12 +40,9 @@ public class WebSecurityConfig {
                     return config;
                 }).and()
                 .csrf().disable()
-                .addFilterBefore(new JWTTokenValidatorFilter(jwtUtils, authenticationService), BasicAuthenticationFilter.class)
+                .addFilterBefore(new TokenValidatorFilter(authenticationService), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                .antMatchers(HttpMethod.GET, "/api/v1/users").authenticated()
-                .antMatchers("/", "/register").permitAll()
-                .and().formLogin()
-                .and().httpBasic();
+                .anyRequest().permitAll();
 
         return http.build();
     }

@@ -1,9 +1,8 @@
 package de.pislaru.sergiu.booklibrary.filters;
 
 import de.pislaru.sergiu.booklibrary.constants.RestApiConstants;
-import de.pislaru.sergiu.booklibrary.security.AuthenticationService;
 
-import de.pislaru.sergiu.booklibrary.utils.JwtUtils;
+import de.pislaru.sergiu.booklibrary.security.service.TokenAuthenticationService;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.security.authentication.BadCredentialsException;
 
@@ -13,13 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class JWTTokenValidatorFilter extends OncePerRequestFilter {
+public class TokenValidatorFilter extends OncePerRequestFilter {
 
-    private final JwtUtils jwtUtils;
-    private final AuthenticationService authenticationService;
+    private final TokenAuthenticationService authenticationService;
 
-    public JWTTokenValidatorFilter(JwtUtils jwtUtils, AuthenticationService authenticationService) {
-        this.jwtUtils = jwtUtils;
+    public TokenValidatorFilter(TokenAuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 
@@ -29,10 +26,9 @@ public class JWTTokenValidatorFilter extends OncePerRequestFilter {
 
         String jwtToken = request.getHeader("Authorization");
 
-        if (jwtToken != null && jwtUtils.isJwtTokenValid(jwtToken)) {
+        if (jwtToken != null && authenticationService.isTokenValid(jwtToken)) {
             try {
-                String username = jwtUtils.getUserNameFromJwtToken(jwtToken);
-                authenticationService.setTokenAuthenticatedUserToContext(username);
+                authenticationService.setTokenAuthenticatedUserToContext(jwtToken);
             } catch (Exception e) {
                 throw new BadCredentialsException("Invalid Token received!");
             }
