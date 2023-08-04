@@ -6,8 +6,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Optional;
 
 public interface AuthenticationService {
+
     Authentication authenticate(String username, char[] password);
 
-    Optional<UserDetails> getUserDetails(Long id);
+    boolean passwordOfAuthenticatedUserMatches(char[] password);
 
+    Optional<UserDetails> getUserDetails(Long id);
 }
