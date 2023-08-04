@@ -1,21 +1,28 @@
 package de.pislaru.sergiu.booklibrary.security;
 
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
+
 public final class SecurityUserHolder {
 
     private SecurityUserHolder() {
     }
 
-    public static Optional<Long> idOfLoggedInUser() {
-        return loggedInUser().map(SecurityUser::getId);
+    public static Optional<Long> getIdOfTheAuthenticatedUser() {
+        return getAuthenticatedUser().map(SecurityUser::getId);
     }
 
-    private static Optional<SecurityUser> loggedInUser() {
+    public static Optional<String> getPasswordOfTheAuthenticatedUser() {
+        return getAuthenticatedUser().map(SecurityUser::getPassword);
+    }
+
+    public static Optional<String> getEmailOfTheAuthenticatedUser() {
+        return getAuthenticatedUser().map(SecurityUser::getEmail);
+    }
+
+    private static Optional<SecurityUser> getAuthenticatedUser() {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof SecurityUser) {
             return Optional.of((SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         }

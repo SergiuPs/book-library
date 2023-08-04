@@ -1,9 +1,9 @@
 package de.pislaru.sergiu.booklibrary.security.service;
 
-import de.pislaru.sergiu.booklibrary.exceptions.PrincipalNotFoundException;
-
 import de.pislaru.sergiu.booklibrary.security.SecurityUser;
 import de.pislaru.sergiu.booklibrary.security.SecurityUserHolder;
+import de.pislaru.sergiu.booklibrary.security.exception.PrincipalNotFoundException;
+
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -83,8 +83,8 @@ public class JWTAuthenticationService implements TokenAuthenticationService {
     private String generateJwtToken(Authentication auth) {
         Date now = new Date();
         Date expirationDate = new Date(now.getTime() + jwtExpiresAfter);
-        Long userId = SecurityUserHolder.idOfLoggedInUser()
-                        .orElseThrow(() -> new PrincipalNotFoundException("SecurityUser missing"));
+        Long userId = SecurityUserHolder.getIdOfTheAuthenticatedUser()
+                        .orElseThrow(() -> new PrincipalNotFoundException("Id of authenticated user not found"));
 
         return  Jwts.builder().setIssuer("Spring-Library")
                 .setSubject(String.valueOf(userId))
