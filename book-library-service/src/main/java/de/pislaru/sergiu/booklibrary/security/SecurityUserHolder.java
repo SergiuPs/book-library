@@ -9,10 +9,10 @@ import java.util.Optional;
 public final class SecurityUserHolder {
 
     private SecurityUserHolder() {
-    };
+    }
 
     public static Optional<Long> idOfLoggedInUser() {
-        return loggedInUser().map(SecurityUser::id);
+        return loggedInUser().map(SecurityUser::getId);
     }
 
     private static Optional<SecurityUser> loggedInUser() {

@@ -1,56 +1,47 @@
 package de.pislaru.sergiu.booklibrary.security;
 
-import de.pislaru.sergiu.booklibrary.model.user.Role;
-import de.pislaru.sergiu.booklibrary.model.user.User;
+import de.pislaru.sergiu.booklibrary.domain.entity.user.Role;
+import de.pislaru.sergiu.booklibrary.domain.entity.user.User;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Optional;
 
-public record SecurityUser(User user, Collection<? extends  GrantedAuthority> authorities) implements UserDetails {
+import java.util.*;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+
+
+public final class SecurityUser implements UserDetails {
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityUser.class);
 
-    public long id() {
-        return user.getId();
-    }
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+    private final Collection<? extends  GrantedAuthority> authorities;
+    private final User user;
+
+    public SecurityUser(User user) {
+        this.user = user;
+        this.authorities = getGrantedAuthorities(user.getRoles());
     }
 
-    @Override
-    public String getPassword() {
-        return user.getPassword();
-    }
-
-    @Override
-    public String getUsername() {
-        return user.getUserName();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return user.isEnabled();
+    /**
+     * Merge all roles and permissions associated to that role
+     * into a Collection of Granted Authorities.
+     * @param roles User roles
+     * @return User authorities
+     */
+    private Collection<? extends GrantedAuthority> getGrantedAuthorities(Collection<Role> roles) {
+        return roles.stream()
+                .flatMap(role -> Stream.concat(
+                        Stream.of(new SimpleGrantedAuthority(role.getName())),
+                        role.getPermissions().stream()
+                                .map(permission -> new SimpleGrantedAuthority(permission.getName()))
+                ))
+                .collect(Collectors.toList());
     }
 
     /** Get the highest access level from user roles.
@@ -69,4 +60,48 @@ public record SecurityUser(User user, Collection<? extends  GrantedAuthority> au
             return 0;
         }
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return user.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        return user.getUsername();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return user.isEnabled();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return user.isEnabled();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return user.isEnabled();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return user.isEnabled();
+    }
+
+    public long getId() {
+        return user.getId();
+    }
+
+    public String getEmail() {
+        return user.getEmail();
+    }
+
 }
