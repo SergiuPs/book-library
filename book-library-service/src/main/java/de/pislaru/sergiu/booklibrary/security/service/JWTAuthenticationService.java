@@ -1,8 +1,6 @@
 package de.pislaru.sergiu.booklibrary.security.service;
 
 import de.pislaru.sergiu.booklibrary.security.SecurityUser;
-import de.pislaru.sergiu.booklibrary.security.SecurityUserHolder;
-import de.pislaru.sergiu.booklibrary.security.exception.PrincipalNotFoundException;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -17,6 +15,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -38,9 +38,11 @@ public class JWTAuthenticationService implements TokenAuthenticationService {
     private Long jwtExpiresAfter;
 
     private final AuthenticationService authenticationService;
+    private final UserDetailsService userDetailsService;
 
-    public JWTAuthenticationService(AuthenticationService authenticationService) {
+    public JWTAuthenticationService(AuthenticationService authenticationService, UserDetailsService userDetailsService) {
         this.authenticationService = authenticationService;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -69,10 +71,8 @@ public class JWTAuthenticationService implements TokenAuthenticationService {
 
     @Override
     public void setTokenAuthenticatedUserToContext(String token) {
-        Long id = getUserId(token);
-        SecurityUser user = (SecurityUser) authenticationService
-                            .getUserDetails(id)
-                            .orElseThrow(() -> new BadCredentialsException("Invalid token"));
+        String username = getUsername(token);
+        UserDetails user = userDetailsService.loadUserByUsername(username);
 
         UsernamePasswordAuthenticationToken auth =
                 new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
@@ -83,11 +83,11 @@ public class JWTAuthenticationService implements TokenAuthenticationService {
     private String generateJwtToken(Authentication auth) {
         Date now = new Date();
         Date expirationDate = new Date(now.getTime() + jwtExpiresAfter);
-        Long userId = SecurityUserHolder.getIdOfTheAuthenticatedUser()
-                        .orElseThrow(() -> new PrincipalNotFoundException("Id of authenticated user not found"));
+        SecurityUser user = (SecurityUser) auth.getPrincipal();
 
         return  Jwts.builder().setIssuer("Spring-Library")
-                .setSubject(String.valueOf(userId))
+                .setSubject(user.getUsername())
+                .claim("id", user.getId())
                 .claim("authorities", populateAuthorities(auth.getAuthorities()))
                 .setIssuedAt(now)
                 .setExpiration(expirationDate)
@@ -99,10 +99,9 @@ public class JWTAuthenticationService implements TokenAuthenticationService {
         return Keys.hmacShaKeyFor(jwtKey.getBytes(StandardCharsets.UTF_8));
     }
 
-    private Long getUserId(String token) {
-        String userId = Jwts.parserBuilder().setSigningKey(getKey()).build()
+    private String getUsername(String token) {
+        return Jwts.parserBuilder().setSigningKey(getKey()).build()
                 .parseClaimsJws(token).getBody().getSubject();
-        return Long.parseLong(userId);
     }
 
     private String populateAuthorities(Collection<? extends GrantedAuthority> collection) {
