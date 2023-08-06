@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.security.exception;
+package de.pislaru.sergiu.booklibrary.auth.exception;
 
 public class PrincipalNotFoundException extends RuntimeException {
 
