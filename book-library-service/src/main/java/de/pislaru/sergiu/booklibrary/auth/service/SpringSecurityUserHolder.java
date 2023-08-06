@@ -1,12 +1,11 @@
-package de.pislaru.sergiu.booklibrary.security.service;
+package de.pislaru.sergiu.booklibrary.auth.service;
 
 
-import de.pislaru.sergiu.booklibrary.security.SecurityUser;
-import de.pislaru.sergiu.booklibrary.security.service.SecurityUserHolder;
+import de.pislaru.sergiu.booklibrary.auth.SecurityUser;
+import de.pislaru.sergiu.booklibrary.auth.exception.PrincipalNotFoundException;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public final class SpringSecurityUserHolder implements SecurityUserHolder {
@@ -14,23 +13,24 @@ public final class SpringSecurityUserHolder implements SecurityUserHolder {
     private SpringSecurityUserHolder() {
     }
 
-    public Optional<SecurityUser> getAuthenticatedUser() {
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof SecurityUser) {
-            return Optional.of((SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    @Override
+    public SecurityUser getAuthenticatedUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = auth.getPrincipal();
+        if (!(principal instanceof SecurityUser)) {
+            throw new PrincipalNotFoundException("Unauthenticated");
         }
-        return Optional.empty();
+        return (SecurityUser) principal;
     }
 
-    public Optional<Long> getIdOfTheAuthenticatedUser() {
-        return getAuthenticatedUser().map(SecurityUser::getId);
+    @Override
+    public Long getIdOfTheAuthenticatedUser() {
+        return getAuthenticatedUser().getId();
     }
 
-    public Optional<String> getPasswordOfTheAuthenticatedUser() {
-        return getAuthenticatedUser().map(SecurityUser::getPassword);
-    }
-
-    public Optional<String> getEmailOfTheAuthenticatedUser() {
-        return getAuthenticatedUser().map(SecurityUser::getEmail);
+    @Override
+    public String getEmailOfTheAuthenticatedUser() {
+        return getAuthenticatedUser().getEmail();
     }
 
 }
