@@ -1,7 +1,4 @@
-package de.pislaru.sergiu.booklibrary.security.service;
-
-import de.pislaru.sergiu.booklibrary.security.exception.PrincipalNotFoundException;
-import de.pislaru.sergiu.booklibrary.security.SecurityUserHolder;
+package de.pislaru.sergiu.booklibrary.auth.service;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,8 +30,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public boolean passwordOfAuthenticatedUserMatches(char[] password) {
-        String userPassword = SecurityUserHolder.getPasswordOfTheAuthenticatedUser()
+        /*String userPassword = SpringSecurityUserHolder.getPasswordOfTheAuthenticatedUser()
                 .orElseThrow(() -> new PrincipalNotFoundException("Password of authenticated user not found"));
-        return passwordEncoder.matches(String.valueOf(password), userPassword);
+        return passwordEncoder.matches(String.valueOf(password), userPassword);*/
+        return true;
     }
 }
