@@ -1,8 +1,8 @@
-package de.pislaru.sergiu.booklibrary.security;
+package de.pislaru.sergiu.booklibrary.auth;
 
 import org.springframework.security.core.GrantedAuthority;
-
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.*;
 
 public final class SecurityUser implements UserDetails {
@@ -13,14 +13,10 @@ public final class SecurityUser implements UserDetails {
     private final String firstName;
     private final String lastName;
     private final String password;
-    private final boolean accountNonExpired;
-    private final boolean accountNonLocked;
-    private final boolean credentialsNonExpired;
     private final boolean enabled;
     private final Collection<? extends  GrantedAuthority> authorities;
 
     public SecurityUser(Long id, String username, String email, String firstName, String lastName, String password,
-                        boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired,
                         boolean enabled, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
@@ -28,11 +24,37 @@ public final class SecurityUser implements UserDetails {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.accountNonExpired = accountNonExpired;
-        this.accountNonLocked = accountNonLocked;
-        this.credentialsNonExpired = credentialsNonExpired;
         this.enabled = enabled;
         this.authorities = authorities;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof SecurityUser that)) {
+            return false;
+        }
+
+        return this.id != null && this.id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()+ " {" +
+                "Id=" + this.id + ", " +
+                "Username=" + this.username + ", " +
+                "Email=" + this.email + ", " +
+                "FirstName=" + this.firstName + ", " +
+                "LastName=" + this.lastName + ", " +
+                "Enabled=" + this.enabled + ", " +
+                "Authorities=" + this.authorities.toString() + "}";
     }
 
     @Override
@@ -42,15 +64,16 @@ public final class SecurityUser implements UserDetails {
     @Override
     public String getUsername() {return username;}
     @Override
-    public boolean isAccountNonExpired() {return accountNonExpired;}
+    public boolean isAccountNonExpired() {return enabled;}
     @Override
-    public boolean isAccountNonLocked() {return accountNonLocked;}
+    public boolean isAccountNonLocked() {return enabled;}
     @Override
-    public boolean isCredentialsNonExpired() {return credentialsNonExpired;}
+    public boolean isCredentialsNonExpired() {return enabled;}
     @Override
     public boolean isEnabled() {return enabled;}
     public Long getId() {return id;}
     public String getEmail() {return email;}
     public String getFirstName() {return firstName;}
     public String getLastName() {return lastName;}
+
 }
