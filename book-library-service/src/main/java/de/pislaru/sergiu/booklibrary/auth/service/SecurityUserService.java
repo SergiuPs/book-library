@@ -1,10 +1,10 @@
-package de.pislaru.sergiu.booklibrary.security.service;
+package de.pislaru.sergiu.booklibrary.auth.service;
 
 import de.pislaru.sergiu.booklibrary.domain.entity.user.Role;
 import de.pislaru.sergiu.booklibrary.domain.entity.user.User;
 import de.pislaru.sergiu.booklibrary.repository.user.UserRepository;
 
-import de.pislaru.sergiu.booklibrary.security.SecurityUser;
+import de.pislaru.sergiu.booklibrary.auth.SecurityUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,9 +51,6 @@ public class SecurityUserService implements UserDetailsService {
                 user.getFirstName(),
                 user.getLastName(),
                 user.getPassword(),
-                user.isEnabled(),
-                user.isEnabled(),
-                user.isEnabled(),
                 user.isEnabled(),
                 getGrantedAuthorities(user.getRoles())
         );
