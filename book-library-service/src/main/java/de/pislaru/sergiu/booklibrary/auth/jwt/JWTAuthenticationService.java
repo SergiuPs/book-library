@@ -1,7 +1,8 @@
-package de.pislaru.sergiu.booklibrary.security.service;
+package de.pislaru.sergiu.booklibrary.auth.jwt;
 
-import de.pislaru.sergiu.booklibrary.security.SecurityUser;
+import de.pislaru.sergiu.booklibrary.auth.SecurityUser;
 
+import de.pislaru.sergiu.booklibrary.auth.service.AuthenticationService;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;

@@ -1,4 +1,4 @@
-package de.pislaru.sergiu.booklibrary.security.service;
+package de.pislaru.sergiu.booklibrary.auth.jwt;
 
 public interface TokenAuthenticationService {
 
