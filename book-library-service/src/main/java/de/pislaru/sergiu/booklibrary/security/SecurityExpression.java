@@ -1,14 +1,13 @@
 package de.pislaru.sergiu.booklibrary.security;
 
 import de.pislaru.sergiu.booklibrary.auth.SecurityUser;
-import de.pislaru.sergiu.booklibrary.auth.service.SecurityUserHolder;
+
 import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionOperations;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SecurityExpression extends SecurityExpressionRoot implements MethodSecurityExpressionOperations {
-
 
     private Object filterObject;
     private Object returnObject;
@@ -50,4 +49,5 @@ public class SecurityExpression extends SecurityExpressionRoot implements Method
     public Object getThis() {
         return this;
     }
+
 }
