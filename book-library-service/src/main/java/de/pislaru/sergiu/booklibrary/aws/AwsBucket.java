@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public enum AwsBucket {
 
-    @JsonProperty("user-avatar")
+    @JsonProperty("spring-library-user-avatars")
     USER_AVATAR("spring-library-user-avatars");
 
     private final String bucketName;
