@@ -1,8 +1,8 @@
 package de.pislaru.sergiu.booklibrary.filters;
 
+import de.pislaru.sergiu.booklibrary.auth.jwt.TokenAuthenticationService;
 import de.pislaru.sergiu.booklibrary.constants.RestApiConstants;
 
-import de.pislaru.sergiu.booklibrary.security.service.TokenAuthenticationService;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.security.authentication.BadCredentialsException;
 
