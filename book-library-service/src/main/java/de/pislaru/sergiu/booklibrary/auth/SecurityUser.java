@@ -53,6 +53,7 @@ public final class SecurityUser implements UserDetails {
                 "Email=" + this.email + ", " +
                 "FirstName=" + this.firstName + ", " +
                 "LastName=" + this.lastName + ", " +
+                "Password=[***********], " +
                 "Enabled=" + this.enabled + ", " +
                 "Authorities=" + this.authorities.toString() + "}";
     }
