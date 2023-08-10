@@ -1,5 +1,7 @@
 package de.pislaru.sergiu.booklibrary.auth.service;
 
+import de.pislaru.sergiu.booklibrary.auth.exception.PasswordNotFoundException;
+import de.pislaru.sergiu.booklibrary.repository.user.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -8,13 +10,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthenticationServiceImpl implements AuthenticationService {
+public class SpringAuthenticationService implements AuthenticationService {
 
+    private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
 
 
-    public AuthenticationServiceImpl(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder) {
+    public SpringAuthenticationService(UserRepository userRepository, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
     }
@@ -29,10 +33,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public boolean passwordOfAuthenticatedUserMatches(char[] password) {
-        /*String userPassword = SpringSecurityUserHolder.getPasswordOfTheAuthenticatedUser()
-                .orElseThrow(() -> new PrincipalNotFoundException("Password of authenticated user not found"));
-        return passwordEncoder.matches(String.valueOf(password), userPassword);*/
-        return true;
+    public boolean passwordMatches(Long userId, char[] password) {
+        String userPassword = userRepository.getPasswordByUserId(userId)
+                .orElseThrow(() -> new PasswordNotFoundException("No password found in database for user: " + userId))
+                .getPassword();
+        return passwordEncoder.matches(String.valueOf(password), userPassword);
     }
 }
