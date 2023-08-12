@@ -1,11 +1,14 @@
 package de.pislaru.sergiu.booklibrary.config;
 
-import de.pislaru.sergiu.booklibrary.commands.RoleCommand;
-import de.pislaru.sergiu.booklibrary.commands.address.AddressCommand;
-import de.pislaru.sergiu.booklibrary.model.Role;
-import de.pislaru.sergiu.booklibrary.model.RoleInfo;
-import de.pislaru.sergiu.booklibrary.model.address.Address;
-import de.pislaru.sergiu.booklibrary.model.address.AddressInfo;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import de.pislaru.sergiu.booklibrary.domain.entity.user.Role;
+import de.pislaru.sergiu.booklibrary.user.dto.RoleDTO;
+import de.pislaru.sergiu.booklibrary.domain.entity.address.Address;
+import de.pislaru.sergiu.booklibrary.address.AddressDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,30 +21,23 @@ public class ModelMapperConfiguration {
 
         ModelMapper modelMapper = new ModelMapper();
 
-        modelMapper.typeMap(AddressCommand.class, AddressInfo.class).addMappings(mapper -> {
-            mapper.map(AddressCommand::getCity, AddressInfo::setCityInfo);
+        modelMapper.typeMap(Address.class, AddressDTO.class).addMappings(mapper -> {
+            mapper.map(Address::getCity, AddressDTO::setCity);
         });
 
-        modelMapper.typeMap(AddressCommand.class, AddressInfo.class).addMappings(mapper -> {
-            mapper.map(AddressCommand::getUserCommand, AddressInfo::setUserInfo);
-        });
-
-        modelMapper.typeMap(Address.class, AddressInfo.class).addMappings(mapper -> {
-            mapper.map(Address::getCity, AddressInfo::setCityInfo);
-        });
-
-        modelMapper.typeMap(Address.class, AddressInfo.class).addMappings(mapper -> {
-            mapper.map(Address::getUser, AddressInfo::setUserInfo);
-        });
-
-        modelMapper.typeMap(Role.class, RoleInfo.class).addMappings(mapper -> {
-            mapper.map(Role::getPermissions, RoleInfo::setPermissions);
-        });
-
-        modelMapper.typeMap(RoleInfo.class, RoleCommand.class).addMappings(mapper -> {
-            mapper.map(RoleInfo::getPermissions, RoleCommand::setPermissions);
+        modelMapper.typeMap(Role.class, RoleDTO.class).addMappings(mapper -> {
+            mapper.map(Role::getPermissions, RoleDTO::setPermissions);
         });
 
         return modelMapper;
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        return objectMapper;
     }
 }
